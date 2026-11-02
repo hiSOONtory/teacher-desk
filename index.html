@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>교사 대시보드</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5d6475;--line:#e3e6ee;--pt:#4f6df5}
+@media (prefers-color-scheme:dark){:root{--bg:#14161c;--card:#1d2028;--ink:#eceef4;--sub:#a3aabb;--line:#2c303b;--pt:#8da2ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:1.7rem;margin:0 0 4px}
+.lead{color:var(--sub);margin:0 0 28px}
+h2{font-size:1.05rem;margin:28px 0 10px;color:var(--sub)}
+a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:0 0 10px;color:var(--ink);text-decoration:none}
+a.card:hover{border-color:var(--pt)}
+a.card b{display:block;color:var(--pt)}
+a.card span{color:var(--sub);font-size:.92rem}
+.foot{margin-top:32px;color:var(--sub);font-size:.9rem}
+.foot a{color:var(--pt)}
+</style>
+</head>
+<body>
+<main>
+  <h1>📺 교사 대시보드</h1>
+  <p class="lead">바탕화면에 띄워 두는 선생님용 대시보드 · 시간표, 진도, 출결, 마감 업무</p>
+
+  <h2>먼저 읽어요</h2>
+  <a class="card" href="설치_설명서.html"><b>🖼️ 설치 설명서</b><span>Lively Wallpaper에 올리는 6단계 (그림)</span></a>
+  <a class="card" href="마감요정_연동_설명서.html"><b>🧚 마감요정 연동 설명서</b><span>쪽지 마감이 바탕화면에 저절로 떠요 (그림)</span></a>
+
+  <h2>파일 받기</h2>
+  <a class="card" href="teacher-desk.html" download="teacher-desk.html"><b>⬇️ 대시보드 기본판</b><span>teacher-desk.html · 마감요정 없이 쓸 때</span></a>
+  <a class="card" href="teacher-desk-magam.html" download="teacher-desk-magam.html"><b>⬇️ 대시보드 마감요정 연동판</b><span>teacher-desk-magam.html · 마감요정과 같이 쓸 때 (둘 중 하나만 쓰세요)</span></a>
+  <a class="card" href="대시보드_점검.bat" download="대시보드_점검.bat"><b>⬇️ 점검 도구</b><span>대시보드_점검.bat + td-check.ps1 (두 파일을 같은 폴더에)</span></a>
+  <a class="card" href="td-check.ps1" download="td-check.ps1"><b>⬇️ td-check.ps1</b><span>점검 도구의 나머지 한 파일</span></a>
+
+  <p class="foot">기록은 내 컴퓨터에만 저장돼요. 소스와 안내는 <a href="https://github.com/hiSOONtory/teacher-desk">GitHub</a>에 있어요.</p>
+</main>
+</body>
+</html>

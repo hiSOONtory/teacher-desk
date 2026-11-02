@@ -13,7 +13,9 @@
 
 ## 받기
 
-이 페이지 위쪽 초록색 **Code** 버튼 → **Download ZIP**을 눌러 받은 뒤 압축을 풀어요.
+**웹페이지에서 받기:** https://teacher-desk.hisoontory.workers.dev 에서 설명서를 보고 파일을 하나씩 받을 수 있어요.
+
+또는 이 페이지 위쪽 초록색 **Code** 버튼 → **Download ZIP**을 눌러 받은 뒤 압축을 풀어요.
 
 | 파일 | 무엇 |
 |---|---|
