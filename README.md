@@ -73,3 +73,7 @@
 %LOCALAPPDATA%\Packages\12030rocksdanister.LivelyWallpaper_97hta09mmv6hy\LocalCache\Local\Lively Wallpaper
 ```
 
+
+## 배포
+
+`main` 브랜치에 푸시하면 Cloudflare가 자동으로 빌드·배포합니다(Workers 빌드, 배포 명령 `npx wrangler deploy`, 빌드 명령 없음). 주소: https://teacher-desk.hisoontory.workers.dev
