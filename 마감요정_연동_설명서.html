@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>마감요정 연동 설명서</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1f2430;--sub:#5d6475;--line:#e3e6ee;--pt:#4f6df5;--ok:#1f9d6b;--warn:#d9822b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161c;--card:#1d2028;--ink:#eceef4;--sub:#a3aabb;--line:#2c303b;--pt:#8da2ff;--ok:#4cc79a;--warn:#f0a860}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.7rem;text-align:center;margin:0 0 4px}
+.lead{text-align:center;color:var(--sub);margin:0 0 32px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 20px;margin:0 0 20px;text-align:center}
+.num{display:inline-block;background:var(--pt);color:#fff;border-radius:999px;padding:2px 14px;font-weight:700;font-size:.9rem}
+.big{font-size:4rem;line-height:1.2;margin:8px 0}
+.step h2{font-size:1.25rem;margin:4px 0}
+.step p{margin:4px 0;color:var(--sub)}
+.arrow{text-align:center;font-size:1.6rem;color:var(--sub);margin:-6px 0 8px}
+.mini{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:6px 14px;margin:6px 4px 0;font-size:1rem}
+.ok{border-color:var(--ok)} .warn{border-color:var(--warn)}
+h3{margin:36px 0 12px;text-align:center}
+ul{list-style:none;padding:0;margin:0}
+li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:0 0 10px}
+li b{color:var(--pt)}
+.foot{color:var(--sub);font-size:.9rem;text-align:center;margin-top:32px}
+</style>
+</head>
+<body>
+<main>
+  <h1>🧚 마감요정 + 📺 대시보드</h1>
+  <p class="lead">쪽지 마감이 바탕화면에 저절로 떠요</p>
+
+  <div class="step">
+    <span class="num">먼저</span>
+    <div class="big">🧚 + 📺</div>
+    <h2>둘 다 같은 컴퓨터에 있어야 해요</h2>
+    <p>마감요정은 <b>새 버전(1.7 이상)</b>,<br>대시보드는 <b>마감요정 연동판</b>이어야 해요.</p>
+    <span class="mini warn">처음 공개된 기본판 대시보드에는 연동이 없어요</span>
+  </div>
+  <div class="arrow">⬇</div>
+
+  <div class="step">
+    <span class="num">1</span>
+    <div class="big">🧚</div>
+    <h2>마감요정을 켜요</h2>
+    <p>아래 작업 표시줄 오른쪽에 요정이 보이면 켜진 거예요.</p>
+    <span class="mini">🚀 버튼을 켜 두면 컴퓨터 켤 때 같이 켜져요</span>
+  </div>
+  <div class="arrow">⬇</div>
+
+  <div class="step">
+    <span class="num">2</span>
+    <div class="big">✉️ 👀</div>
+    <h2>브리티 쪽지를 열어서 읽어요</h2>
+    <p>열어 본 쪽지만 요정이 알아요.<br>마감이 적힌 쪽지만 골라 줘요.</p>
+    <span class="mini">요정은 읽기만 해요. 대신 눌러 주지 않아요.</span>
+  </div>
+  <div class="arrow">⬇</div>
+
+  <div class="step">
+    <span class="num">3</span>
+    <div class="big">📺 ✨</div>
+    <h2>대시보드 '마감 업무'에 떠요</h2>
+    <p>🧚 표시가 붙은 건 요정이 가져온 일이에요.<br>약 10초 안에 나타나요.</p>
+    <span class="mini ok">따로 설정할 것 없음</span>
+  </div>
+  <div class="arrow">⬇</div>
+
+  <div class="step">
+    <span class="num">4</span>
+    <div class="big">⭕ ❌</div>
+    <h2>○ 누르면 끝, × 누르면 지움</h2>
+    <p>대시보드에서 눌러도 마감요정에 똑같이 반영돼요.</p>
+  </div>
+
+  <h3>안 보일 때</h3>
+  <ul>
+    <li><b>🧚 요정이 켜져 있나요?</b> 작업 표시줄 오른쪽 아이콘을 확인하세요. 꺼져 있으면 다시 켜세요.</li>
+    <li><b>쪽지를 열어 봤나요?</b> 열지 않은 쪽지는 요정도 몰라요.</li>
+    <li><b>마감 날짜가 쪽지에 있나요?</b> 마감이 없는 안내·공람 쪽지는 올리지 않아요.</li>
+    <li><b>같은 컴퓨터인가요?</b> 연결은 이 컴퓨터 안에서만 이뤄져요. 다른 컴퓨터로는 가지 않아요.</li>
+    <li><b>"마감요정에 연결하지 못했어요"가 떠요.</b> 요정을 켠 뒤 다시 눌러 보세요.</li>
+  </ul>
+
+  <h3>덤으로 해 주는 일</h3>
+  <ul>
+    <li>📺 대시보드가 2분 넘게 멈춰 있으면 요정이 Lively를 다시 켜 줘요.</li>
+    <li>🖱️ Lively가 못 넘겨주는 마우스 휠을 요정이 대신 전해 줘요. (큰 창·설정 창에서 쓸 수 있어요)</li>
+  </ul>
+
+  <p class="foot">쪽지 내용과 기록은 이 컴퓨터 밖으로 나가지 않아요.<br>대시보드 설치는 <b>설치_설명서.html</b>을 보세요.</p>
+</main>
+</body>
+</html>
