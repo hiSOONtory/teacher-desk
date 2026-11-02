@@ -72,3 +72,4 @@
 ```
 %LOCALAPPDATA%\Packages\12030rocksdanister.LivelyWallpaper_97hta09mmv6hy\LocalCache\Local\Lively Wallpaper
 ```
+
