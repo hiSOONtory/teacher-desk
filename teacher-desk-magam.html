@@ -1142,8 +1142,13 @@ function mealHtml(T){
   return `<div class="meal"><span class="ico tint" style="--c:var(--orange)">${ICON.bowl}</span><div class="mt"><div class="mh2"><b>${T === ymd(now()) ? "오늘 급식" : mdw(T) + " 급식"}</b>${ml.cal ? `<span>${esc(ml.cal)}</span>` : ""}</div><div class="mm">${ml.menu.map(esc).join(" · ")}</div></div></div>`;
 }
 function attLabel(r){
-  const base = r.reason === "출석인정" ? `출석인정(${r.type})` : `${r.reason}${r.type}`, p = [].concat(r.p || []);
-  return p.length ? `${base} · ${r.type === "결과" ? p.join("·") + "교시" : p[0] + "교시부터"}` : base;
+  const base = r.reason === "출석인정" ? `출석인정(${r.type})` : `${r.reason}${r.type}`, p = [].concat(r.p ?? []);
+  return p.length ? `${base} · ${MULTI(r.type) ? p.map(perName).join("·") : perLbl(r.type, p[0])}` : base;
+}
+// 교시 값: 0 = 조회, 99 = 종례. 결과·결석은 여러 개, 지각은 '~까지', 조퇴는 '~부터'
+const MULTI = t => t === "결과" || t === "결석";
+const perName = n => n === 0 ? "조회" : n === 99 ? "종례" : n + "교시";
+function perLbl(type, n){ return n === 0 || n === 99 ? perName(n) : n + (type === "지각" ? "교시까지" : "교시부터");
 }
 let attView = "today", attRange = "month", attOff = 0;   // attOff: 오늘에서 며칠 전(주말 건너뜀)을 보고 있는지
 const attYmd = () => ymd(addDays(new Date(now().getFullYear(), now().getMonth(), now().getDate()), attOff));
@@ -1601,7 +1606,7 @@ function renderPop(){
     <div class="agrid">
       ${ATT_TYPES.map(ty => `<span class="ar" style="color:${ATT_COLOR[ty]}">${ty}</span>` + RS.map(([rv, l]) => `<button data-act="attSet" data-t="${ty}" data-r="${rv}" class="${r && r.type === ty && r.reason === rv ? "sel" : ""}" title="${rv === "출석인정" ? "출석인정 " + ty : rv + ty}">${rv === "출석인정" ? "인정" : l}</button>`).join("")).join("")}
     </div>
-    ${r && r.type !== "결석" ? `<div class="lb">${r.type === "결과" ? "빠진 교시 (여러 개 고를 수 있어요)" : "몇 교시부터"}</div><div class="segs">${Array.from({ length:S.bells.length || 7 }, (_, i) => i + 1).map(n => `<button data-act="attPer" data-n="${n}" class="${[].concat(r.p || []).includes(n) ? "sel" : ""}">${n}</button>`).join("")}</div>` : ""}
+    ${r ? `<div class="lb">${MULTI(r.type) ? "빠진 교시 (여러 개 고를 수 있어요)" : r.type === "지각" ? "몇 교시까지" : "몇 교시부터"}</div><div class="segs">${[0, ...Array.from({ length:S.bells.length || 7 }, (_, i) => i + 1), 99].map(n => `<button data-act="attPer" data-n="${n}" class="${[].concat(r.p ?? []).includes(n) ? "sel" : ""}">${n === 0 ? "조회" : n === 99 ? "종례" : n}</button>`).join("")}</div>` : ""}
     <div class="popf"><button class="pill sm ${r && r.doc ? "" : "gray"}" data-act="attDoc" ${r ? "" : "disabled"}>${r && r.doc ? "✓ 서류 받음" : "서류 받음"}</button><span style="display:flex;gap:.3rem">${r ? `<button class="pill sm gray" data-act="attClear">출석으로</button>` : ""}<button class="pill sm" data-act="popClose">닫기</button></span></div>
     <button class="ghost sm" data-act="attGone" style="margin-top:.5rem">자퇴·전출로 번호 빼기</button>`;
 }
@@ -3035,9 +3040,9 @@ document.addEventListener("click", e => {
     case "tlPrev": case "tlNext": { const dir = a === "tlPrev" ? -1 : 1, t0 = now(); do { tlOff += dir; } while ([0,6].includes(viewDay(t0).getDay()) && Math.abs(tlOff) < 400); closePop(); renderStatus(t0); return; }
     case "tlToday": tlOff = 0; closePop(); renderStatus(now()); return;
     case "attType": attRec(true).type = b.dataset.v; break;
-    case "attSet": { const r = attRec(true); if (r.type !== b.dataset.t) delete r.p; r.type = b.dataset.t; r.reason = b.dataset.r; if (r.type === "결석") closePop(); break; }   // 지각·조퇴·결과는 교시를 고르게 창을 열어 둔다
+    case "attSet": { const r = attRec(true); if (r.type !== b.dataset.t) delete r.p; r.type = b.dataset.t; r.reason = b.dataset.r; break; }   // 교시(조회·종례 포함)를 고르게 창을 열어 둔다
     case "attPer": { const r = attRec(false); if (!r) return; const n = +b.dataset.n;
-      if (r.type === "결과") { const a = [].concat(r.p || []); r.p = a.includes(n) ? a.filter(x => x !== n) : [...a, n].sort((x, y) => x - y); }
+      if (MULTI(r.type)) { const a = [].concat(r.p ?? []); r.p = a.includes(n) ? a.filter(x => x !== n) : [...a, n].sort((x, y) => x - y); }
       else r.p = r.p === n ? null : n;
       if (r.p == null || (Array.isArray(r.p) && !r.p.length)) delete r.p; break; }
     case "attReason": { const r = attRec(false); if (r) r.reason = b.dataset.v; break; }
