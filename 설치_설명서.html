@@ -49,7 +49,7 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
 <div class="wrap">
   <header>
     <h1>교사 대시보드<br>바탕화면에 띄우기</h1>
-    <p class="lead">무료 프로그램 하나 깔고, 파일 하나 넣으면 끝이에요.</p>
+    <p class="lead">무료 프로그램 하나 깔고, 파일 하나 끌어다 놓으면 끝이에요.</p>
     <span class="time">10분이면 돼요</span>
   </header>
 
@@ -78,26 +78,7 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
 
   <!-- 2 -->
   <section class="step">
-    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="문서 폴더 안에 teacher-desk.html 파일을 넣는 그림">
-      <path class="s-mark" d="M60 92h90l20 22h170v136a12 12 0 0 1-12 12H72a12 12 0 0 1-12-12z"/>
-      <path class="s-mark" d="M60 120h280v130a12 12 0 0 1-12 12H72a12 12 0 0 1-12-12z" opacity=".75"/>
-      <text class="s-txt" x="80" y="84" font-size="20">📁 문서 › 교사대시보드</text>
-      <rect class="s-win" x="160" y="140" width="80" height="100" rx="8"/>
-      <path class="s-bs" d="M216 140v22h24"/>
-      <text class="s-txt" x="200" y="198" font-size="22" text-anchor="middle" fill="var(--blue)">&lt;/&gt;</text>
-      <text class="s-txt" x="200" y="282" font-size="16" text-anchor="middle">teacher-desk.html</text>
-    </svg></div>
-    <div class="txt">
-      <div class="n">2단계</div>
-      <h2>파일을 한곳에 두기</h2>
-      <p><b>teacher-desk.html</b>을 <mark>지우지 않을 폴더</mark>에 넣어요.</p>
-      <small>예: 문서 폴더 안에 “교사대시보드” 폴더를 만들어서.</small>
-    </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="step">
-    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="파일을 Lively 창으로 끌어다 놓는 그림">
+    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="받은 묶음 파일을 Lively 창으로 끌어다 놓는 그림">
       <rect class="s-win" x="150" y="40" width="230" height="220" rx="16"/>
       <rect class="s-bar" x="150" y="40" width="230" height="32" rx="16"/><rect class="s-bar" x="150" y="56" width="230" height="16"/>
       <text class="s-txt" x="170" y="63" font-size="15">Lively</text>
@@ -105,41 +86,36 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
       <text class="s-txt" x="265" y="176" font-size="18" text-anchor="middle" fill="var(--blue)">여기에 놓기</text>
       <path class="s-line" d="M86 150 C 120 110, 170 120, 210 150"/>
       <rect class="s-win" x="40" y="120" width="64" height="80" rx="8"/>
-      <text class="s-txt" x="72" y="168" font-size="18" text-anchor="middle" fill="var(--blue)">&lt;/&gt;</text>
+      <text class="s-txt" x="72" y="168" font-size="16" text-anchor="middle" fill="var(--blue)">ZIP</text>
       <path class="s-ink" d="M96 186l0 36 9-9 7 15 7-3-7-15 13 0z"/>
     </svg></div>
     <div class="txt">
-      <div class="n">3단계</div>
+      <div class="n">2단계</div>
       <h2>Lively에 끌어다 놓기</h2>
-      <p>Lively를 열고 파일을 <mark>창 안으로 끌어다 놓아요</mark>.</p>
-      <small>안 되면 Lively의 <span class="k">＋ 배경화면 추가</span> → 파일 고르기. 목록에 생긴 대시보드를 누르면 바탕화면이 돼요.</small>
+      <p>받은 <b>teacher-desk-lively.zip</b>을 <mark>압축 풀지 말고</mark> Lively 창 안으로 끌어다 놓아요.</p>
+      <small>목록에 생긴 “교사 대시보드”를 누르면 바탕화면이 돼요. 안 되면 압축을 풀어서 안에 있는 teacher-desk.html을 끌어다 놓아도 돼요.</small>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="step must">
+    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Lively 설정에서 디스크 캐시를 켜는 그림">
+      <rect class="s-win" x="40" y="34" width="320" height="232" rx="16"/>
+      <text class="s-txt" x="64" y="72" font-size="18">⚙ 설정</text>
+      <rect class="s-bs" x="58" y="118" width="284" height="66" rx="14"/>
+      <text class="s-txt" x="78" y="157" font-size="19">디스크 캐시</text>
+      <rect class="s-green" x="266" y="134" width="58" height="32" rx="16"/><circle cx="308" cy="150" r="12" fill="#fff"/>
+      <rect x="58" y="118" width="284" height="66" rx="14" fill="none" stroke="var(--red)" stroke-width="3"/>
+    </svg></div>
+    <div class="txt">
+      <div class="n">3단계 · 꼭 하세요</div>
+      <h2>디스크 캐시 켜기</h2>
+      <p>Lively 창의 <span class="k">⚙ 설정</span>에서 <mark>디스크 캐시</mark>를 켜요.</p>
+      <small>안 켜면 컴퓨터를 껐다 켤 때 넣은 내용이 사라져요. 바꾼 뒤엔 Lively를 한 번 껐다 켜요(작업 표시줄 오른쪽 Lively 아이콘 오른쪽 클릭 → 종료 → 다시 실행).</small>
     </div>
   </section>
 
   <!-- 4 -->
-  <section class="step must">
-    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Lively 설정에서 디스크 캐시와 키보드 입력을 켜는 그림">
-      <rect class="s-win" x="40" y="34" width="320" height="232" rx="16"/>
-      <text class="s-txt" x="64" y="72" font-size="18">⚙ 설정</text>
-      <rect class="s-bs" x="58" y="92" width="284" height="66" rx="14"/>
-      <text class="s-txt" x="78" y="131" font-size="19">디스크 캐시</text>
-      <rect class="s-green" x="266" y="108" width="58" height="32" rx="16"/><circle cx="308" cy="124" r="12" fill="#fff"/>
-      <rect class="s-red" x="58" y="92" width="284" height="66" rx="14" fill="none" stroke="var(--red)" stroke-width="3" style="fill:none"/>
-      <rect class="s-bg" x="58" y="172" width="284" height="66" rx="14"/>
-      <text class="s-txt" x="78" y="203" font-size="17">배경화면 입력</text>
-      <text class="s-txt" x="78" y="225" font-size="14" fill="var(--soft)">키보드</text>
-      <rect class="s-green" x="266" y="188" width="58" height="32" rx="16"/><circle cx="308" cy="204" r="12" fill="#fff"/>
-    </svg></div>
-    <div class="txt">
-      <div class="n">4단계 · 꼭 하세요</div>
-      <h2>Lively 설정 두 개 켜기</h2>
-      <p>① <mark>디스크 캐시</mark> 켜기<br><small>안 켜면 컴퓨터를 껐다 켤 때 넣은 내용이 사라져요.</small></p>
-      <p>② <mark>배경화면 입력</mark>에서 키보드 켜기<br><small>학교 이름처럼 글자를 칠 때 필요해요.</small></p>
-      <small>둘 다 Lively 창의 <span class="k">⚙ 설정</span>에 있어요. 바꾼 뒤엔 Lively를 한 번 껐다 켜요(작업 표시줄 오른쪽 Lively 아이콘 오른쪽 클릭 → 종료 → 다시 실행).</small>
-    </div>
-  </section>
-
-  <!-- 5 -->
   <section class="step">
     <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="대시보드 시작하기 화면에서 학교를 고르고 시간표 파일을 넣는 그림">
       <rect class="s-win" x="40" y="34" width="320" height="232" rx="16"/>
@@ -152,14 +128,14 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
       <text class="s-txt w" x="200" y="239" font-size="16" text-anchor="middle">다 됐어요</text>
     </svg></div>
     <div class="txt">
-      <div class="n">5단계</div>
+      <div class="n">4단계</div>
       <h2>학교 고르고 시간표 넣기</h2>
       <p>바탕화면에 뜬 <span class="k">시작하기</span>를 누르고 따라가요.</p>
       <small>학교를 고르면 학사일정·급식은 나이스에서 매일 자동으로 와요. 시간표는 한글·PDF·엑셀 파일 그대로 넣으면 돼요.</small>
     </div>
   </section>
 
-  <!-- 6 -->
+  <!-- 5 -->
   <section class="step">
     <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="바탕화면 아이콘이 왼쪽에 있고 대시보드가 오른쪽으로 비켜난 그림">
       <rect class="s-win" x="30" y="40" width="340" height="200" rx="12"/>
@@ -172,7 +148,7 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
       <rect x="140" y="250" width="120" height="30" rx="8" fill="var(--ink)"/><rect x="186" y="240" width="28" height="12" fill="var(--ink)"/>
     </svg></div>
     <div class="txt">
-      <div class="n">6단계 · 원하면</div>
+      <div class="n">5단계 · 원하면</div>
       <h2>내 화면에 맞추기</h2>
       <p>대시보드 오른쪽 위 <span class="k">⚙</span> → 화면 · 알림에서 바꿔요.</p>
       <p>· 아이콘이 가리면 <mark>왼쪽 여백</mark>을 늘려요.<br>· <mark>칸 배치</mark>에서 칸 순서를 바꾸거나 안 쓰는 칸을 숨겨요.</p>
@@ -184,7 +160,7 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
     <h2>쓰면서 알아 두세요</h2>
     <ul>
       <li>마우스 <b>휠은 안 먹어요</b>. 큰 창에서 목록을 내릴 땐 <b>잡고 끌어요</b>(휴대폰처럼).</li>
-      <li>글자를 다 쳤으면 키보드 입력은 다시 꺼도 돼요. 켜 두면 바탕화면 아이콘이 숨겨질 수 있어요.</li>
+      <li><b>글자 칸을 누르면</b> 작은 입력 창이 떠요. 거기에 쓰고 <span class="k">확인</span>을 누르면 들어가요.</li>
       <li>칸에는 꼭 필요한 것만 보여요. <b>제목이나 칸을 누르면</b> 큰 창으로 자세히 나와요.</li>
       <li>혹시 모르니 가끔 <span class="k">⚙</span> → 백업 · 초기화에서 <b>파일로 내보내기</b>를 해 두세요.</li>
       <li>더 자세한 방법은 대시보드 <span class="k">⚙</span> → <b>사용 방법</b>에 있어요.</li>

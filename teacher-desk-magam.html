@@ -177,6 +177,14 @@ button,input,select,textarea{font:inherit;letter-spacing:inherit}
 .segs button{border:0;border-radius:99px;padding:.38rem .8rem;background:var(--fill2);color:var(--text);font-size:.88rem;font-weight:600;cursor:pointer}
 .segs button.sel{background:var(--blue);color:#fff}
 .segs button:disabled{opacity:.35;cursor:default}
+.smsb{margin:.2rem 0 .7rem;padding:.65rem .7rem;border-radius:14px;background:color-mix(in srgb,var(--blue) 11%,transparent)}
+.smsb .lb{color:var(--blue) !important}
+textarea.inp.smsta{min-height:6.2rem;resize:none;font-size:.86rem;line-height:1.55;margin-bottom:.5rem;background:var(--pop)}
+.smsb .pill{width:100%}
+.smsx{display:flex;flex-wrap:wrap;align-items:center;column-gap:.6rem;margin:.1rem 0 .7rem;padding-top:.6rem;border-top:1px dashed var(--fill2)}
+.smsx>.lb,.smsx>.segs{margin:0}
+.smsxa{flex-basis:100%;margin-top:.55rem}
+.smsxa .segs{margin-bottom:0}
 .popf{display:flex;justify-content:space-between;gap:.4rem;margin-top:.2rem}
 
 /* 진도 */
@@ -562,11 +570,12 @@ body::before{background:
 .tiles.t5{grid-template-columns:repeat(5,1fr)}
 .t-warn b{color:var(--red)}
 .sumt{display:flex;flex-direction:column}
-.sumt .sh,.sumt .sr{display:grid;grid-template-columns:6.2rem 4.2rem 2.6rem 2.6rem 2.6rem minmax(0,1fr);gap:.4rem;align-items:center;padding:.42rem .2rem}
+.sumt .sh,.sumt .sr{display:grid;grid-template-columns:6.2rem 7.4rem 2.4rem 2.4rem 2.4rem minmax(0,1fr);gap:.4rem;align-items:center;padding:.28rem .2rem}
 .sumt .sh{font-size:.76rem;color:var(--text2);font-weight:700;border-bottom:1px solid var(--sep)}
 .sumt .sr + .sr{border-top:1px solid var(--sep)}
 .sumt .sr{font-size:.92rem}
-.sumt .sr small{display:block;font-size:.7rem;color:var(--text2)}
+.sumt .sr small{font-size:.7rem;color:var(--text2);margin-left:.3rem;white-space:nowrap}
+.sumall{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
 .sumt .fl{display:flex;flex-wrap:wrap;gap:.25rem;justify-content:flex-end}
 .flag{font-size:.72rem;font-weight:700;padding:.12rem .45rem;border-radius:99px;white-space:nowrap}
 .flag.r{background:color-mix(in srgb, var(--red) 16%, transparent);color:var(--red)}
@@ -702,9 +711,49 @@ body::before{background:
    → 메모리가 빠듯하면 대시보드가 멈춘다. 카드 뒤는 이 페이지의 부드러운 그라데이션이라 흐림을 꺼도 거의 같아 보인다. */
 *{backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
 .dial .fg{transition:none !important}
+/* 크리스마스 전구 줄 + 매달린 치이카와들 (클릭은 그대로 통과) */
+.lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:4;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='30'%3E%3Cpath d='M0 3Q28 19 56 3' fill='none' stroke='%231f5c2e' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M0 3Q28 19 56 3' fill='none' stroke='%233f8f4f' stroke-width='5' stroke-dasharray='1.5 3'/%3E%3Cpath d='M0 3Q28 19 56 3' fill='none' stroke='%2366b36f' stroke-width='2' stroke-dasharray='1 4'/%3E%3C/svg%3E") repeat-x}
+.lights i{position:absolute;top:10px;width:8px;height:12px;margin-left:-4px;border-radius:50% 50% 45% 45%;background:var(--b);box-shadow:0 0 7px 1px var(--b);animation:twinkle 2.4s steps(1) infinite}
+.lights i::before{content:"";position:absolute;left:1.5px;top:-3px;width:5px;height:4px;border-radius:1px;background:#6b6b5a}
+.lights i:nth-child(2n){animation-delay:-1.2s}
+.lights i:nth-child(3n){animation-delay:-.6s}
+@keyframes twinkle{50%{opacity:.3;box-shadow:none}}
+.pals{gap:0;align-items:flex-start}
+.pals img{height:3.9rem}
+.hang{position:relative;display:block;margin:0 -.25rem;transform-origin:50% calc(-1 * var(--hang, 80px));animation:swing 3.4s ease-in-out infinite alternate}
+.hang:nth-child(4n+3){margin-top:1.3rem;animation-duration:3.9s}
+.hang:nth-child(3n){animation-duration:3.1s}
+.hang.orn{font-size:1.35rem;line-height:1;margin:0 .05rem;align-self:flex-start;margin-top:.4rem;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+.trip .tripc{display:flex;align-items:center;gap:.5rem;flex:none}
+.trip .tripc b{min-width:3.6rem;text-align:center}
+.round.sm{width:2.1rem;height:2.1rem;font-size:1.2rem;font-weight:700}
+.round.sm:disabled{opacity:.35}
+#kbd{position:fixed;inset:0;z-index:130;display:none;align-items:flex-start;justify-content:center;padding-top:16vh;background:rgba(0,0,0,.18)}
+#kbd.open{display:flex}
+#kbd .kcard{width:min(34rem,90vw);background:var(--pop);border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.25),0 0 0 .5px var(--sep);padding:1.2rem 1.4rem 1rem;outline:none}
+#kbd .kt{font-size:1.05rem;font-weight:800;margin-bottom:.7rem}
+#kbd .ked{min-height:2.9rem;max-height:40vh;overflow:hidden;border-radius:12px;border:2px solid var(--blue,#007aff);background:var(--card);padding:.65rem .8rem;font-size:1.1rem;line-height:1.55;white-space:pre-wrap;word-break:break-all}
+#kbd .multi .ked{min-height:9rem}
+#kbd .ked u{text-decoration:underline;text-underline-offset:3px}
+#kbd .kph{color:var(--text3,#aaa)}
+#kbd .kcar{display:inline-block;width:2px;height:1.2em;vertical-align:-.2em;background:var(--blue,#007aff);margin-left:1px;animation:kblink 1s steps(1) infinite}
+@keyframes kblink{50%{opacity:0}}
+#kbd .kf{display:flex;align-items:center;gap:.5rem;margin-top:.8rem}
+#kbd .kmode{width:2.2rem;height:2.2rem;border-radius:50%;border:0;background:var(--blue,#007aff);color:#fff;font-weight:800;cursor:pointer}
+#kbd .kmode.en{background:var(--text2)}
+#kbd .kh{font-size:.78rem;color:var(--text2)}
+#kbd .kdbg{font-size:.7rem;color:var(--text3,#aaa)}
+#kin{position:absolute;left:-9999px;top:0;width:10px;height:10px;opacity:0}
+#kbd .kh a{text-decoration:underline;cursor:pointer}
+.evadd{display:flex;align-items:center;gap:.4rem;margin-top:.8rem;flex-wrap:wrap}
+.evadd input[type=date]{width:9.6rem;flex:none}
+.evadd input[name=t]{flex:1;min-width:12rem}
+.evadd .evdd{display:flex;align-items:center;gap:.25rem;white-space:nowrap}
+@keyframes swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
 </style>
 </head>
 <body>
+<div class="lights" id="lights" aria-hidden="true"></div>
 <div class="app">
   <header class="top">
     <div class="when">
@@ -715,7 +764,7 @@ body::before{background:
     <div class="w status" id="status">
       <div class="dial" id="dial"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="trk" cx="50" cy="50" r="43"/><circle class="fg" id="ringFg" cx="50" cy="50" r="43"/></svg><div class="rt num" id="ringTxt"></div></div>
       <div class="stx"><div class="sthd"><div class="stt"><div class="lbl" id="stLbl">지금</div><div class="ttl" id="stTitle"></div><div class="sub" id="stSub"></div></div>
-        <div class="pals" aria-hidden="true"><img src="chiikawa.gif" alt="" onerror="this.remove()"><img src="hachiware.gif" alt="" onerror="this.remove()"><img src="usagi.gif" alt="" onerror="this.remove()"></div>
+        <div class="pals" aria-hidden="true"><span class="hang" style="animation-delay:0s"><img src="chiikawa.gif" alt="" onerror="this.parentNode.remove()"></span><span class="hang orn" style="animation-delay:-0.4s">⭐</span><span class="hang" style="animation-delay:-1.3s"><img src="hachiware.gif" alt="" onerror="this.parentNode.remove()"></span><span class="hang orn" style="animation-delay:-1.0s">🔔</span><span class="hang" style="animation-delay:-2.4s"><img src="usagi.gif" alt="" onerror="this.parentNode.remove()"></span></div>
         <div class="side"><div class="ddays" id="ddays"></div><div class="tools">
           <button class="round" data-act="privacy" id="bPriv" title="출결 가리기"></button>
           <button class="round" data-act="theme" id="bTheme" title="밝게 / 어둡게"></button>
@@ -898,6 +947,154 @@ document.addEventListener("mouseup", () => {
   drag = null;
 });
 document.addEventListener("click", e => { if (performance.now() < eatClickUntil) { e.stopPropagation(); e.preventDefault(); } }, true);
+// Lively 바탕화면에서 글자 칸: 넘겨받은 클릭으로는 커서가 잘 안 잡히고, 키보드 전달 때문에 붙여넣기가 두 번 들어온다.
+// → 칸을 누르면 직접 커서를 넣고, 같은 칸에 같은 내용이 0.5초 안에 또 붙여지면 무시한다.
+const TEXTY = 'input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=button]):not([type=submit]),textarea';
+// 바탕화면(Lively, WebView2)에서는 키보드가 한글 입력기를 거치지 않아 글자가 섞인다 → 글자 칸을 누르면 진짜 윈도우 입력 창(prompt)을 띄운다.
+// 여러 줄 칸은 " / "로 이어서 보여 주고 다시 줄로 나눈다. 입력 창이 막혀 있으면(바로 null) 그냥 칸에 커서를 넣는다.
+const IN_LIVELY = !!((window.chrome && window.chrome.webview) || window.TD_HOST);   // TD_HOST: 통합 프로그램(시험판)도 같은 방식
+document.addEventListener("mousedown", e => {
+  if (!IN_LIVELY || e.button !== 0) return;
+  const el = e.target.closest && e.target.closest(TEXTY); if (!el || el.disabled || el.readOnly || /^(date|time|number|range|color)$/.test(el.type)) return;
+  e.preventDefault(); e.stopImmediatePropagation();
+  const multi = el.tagName === "TEXTAREA", row = el.closest(".row, .grp, form, .pane");
+  const lab = (el.id && document.querySelector(`label[for="${el.id}"]`)) || (row && row.querySelector("label, .gl, h3"));
+  const head = el.closest("#pop") && $("#pop h3"), ph = el.placeholder || "";
+  const title = ((lab && lab.childNodes[0] && lab.childNodes[0].textContent) || (head && head.textContent) || ph || "입력").trim().split("\n")[0];
+  const apply = r => {
+    el.value = r; el.dispatchEvent(new Event("input", { bubbles:true })); el.dispatchEvent(new Event("change", { bubbles:true }));
+    if (!multi && r.trim() && el.form && el.form.requestSubmit) el.form.requestSubmit();   // Enter = 바로 저장(할 일 추가·메모 저장)
+  };
+  const basic = () => {   // 윈도우 기본 입력 창 (Lively 키보드 전달이 꺼져 있을 때)
+    const r = prompt(title + (multi ? "  (줄 바꿈은 / 로)" : ""), multi ? el.value.split("\n").filter(Boolean).join(" / ") : el.value);
+    if (r !== null) apply(multi ? r.split(/\s+\/\s+|\s*\/\s*$/).map(x => x.trim()).filter(Boolean).join("\n") : r);
+  };
+  // Lively는 이 바탕화면에 키보드를 안 넘겨준다(11-10 확인). 마감요정이 켜져 있으면 대시보드 모양의 입력 창, 없으면(배포판) 윈도우 기본 입력 창.
+  if (typeof BRIDGE !== "undefined" && typeof mgLive !== "undefined" && mgLive)
+    fetch(`${BRIDGE}/input${multi ? "?m=1" : ""}`, { method:"POST", body:JSON.stringify({ t:title, v:el.value, p:title === ph ? "" : ph }) })
+      .then(r => { if (!r.ok) throw 0; return r.json(); }).then(r => { if (r.ok) apply(r.text.split(String.fromCharCode(13)).join("")); }).catch(basic);
+  else basic();
+}, true);
+/* ---------- 대시보드 안 입력 칸 (Lively 바탕화면용) ----------
+   Lively는 키를 자판 그대로(한글 조합 없이) 넘겨준다 → 누른 자리(e.code)로 두벌식 한글을 직접 조합한다.
+   진짜 키 + Lively가 넘긴 키가 겹쳐 두 번 오는 경우는 30ms 안의 같은 키를 한 번으로 친다. */
+const HG = (() => {
+  const CHO = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ", JUNG = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ", JONG = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ";
+  const KEY = { KeyQ:"ㅂㅃ", KeyW:"ㅈㅉ", KeyE:"ㄷㄸ", KeyR:"ㄱㄲ", KeyT:"ㅅㅆ", KeyY:"ㅛ", KeyU:"ㅕ", KeyI:"ㅑ", KeyO:"ㅐㅒ", KeyP:"ㅔㅖ",
+    KeyA:"ㅁ", KeyS:"ㄴ", KeyD:"ㅇ", KeyF:"ㄹ", KeyG:"ㅎ", KeyH:"ㅗ", KeyJ:"ㅓ", KeyK:"ㅏ", KeyL:"ㅣ", KeyZ:"ㅋ", KeyX:"ㅌ", KeyC:"ㅊ", KeyV:"ㅍ", KeyB:"ㅠ", KeyN:"ㅜ", KeyM:"ㅡ" };
+  const VV = { "ㅗㅏ":"ㅘ", "ㅗㅐ":"ㅙ", "ㅗㅣ":"ㅚ", "ㅜㅓ":"ㅝ", "ㅜㅔ":"ㅞ", "ㅜㅣ":"ㅟ", "ㅡㅣ":"ㅢ" };
+  const FF = { "ㄱㅅ":"ㄳ", "ㄴㅈ":"ㄵ", "ㄴㅎ":"ㄶ", "ㄹㄱ":"ㄺ", "ㄹㅁ":"ㄻ", "ㄹㅂ":"ㄼ", "ㄹㅅ":"ㄽ", "ㄹㅌ":"ㄾ", "ㄹㅍ":"ㄿ", "ㄹㅎ":"ㅀ", "ㅂㅅ":"ㅄ" };
+  const split = (m, x) => Object.keys(m).find(k => m[k] === x);
+  const isV = j => JUNG.includes(j);
+  return () => {
+    let done = "", c = "", v = "", f = "";
+    const syl = () => c && v ? String.fromCharCode(0xAC00 + (CHO.indexOf(c) * 21 + JUNG.indexOf(v)) * 28 + JONG.indexOf(f || " ")) : (c || v);
+    const commit = () => { done += syl(); c = v = f = ""; };
+    return {
+      jamo(code, shift){ const k = KEY[code]; return k ? (shift && k[1]) || k[0] : null; },
+      put(j){
+        if (isV(j)) {
+          if (f) { const sp = split(FF, f), nf = sp ? sp[0] : "", nc = sp ? sp[1] : f; f = nf; commit(); c = nc; v = j; }
+          else if (c && !v) v = j;
+          else if (v && VV[v + j]) v = VV[v + j];
+          else { commit(); v = j; }
+        } else {
+          if (c && v && !f && JONG.includes(j)) f = j;
+          else if (c && v && f && FF[f + j]) f = FF[f + j];
+          else { commit(); c = j; }
+        }
+      },
+      text(t){ commit(); done += t; },
+      back(){
+        if (f) { const sp = split(FF, f); f = sp ? sp[0] : ""; }
+        else if (v) { const sp = split(VV, v); v = sp ? sp[0] : ""; }
+        else if (c) c = "";
+        else done = [...done].slice(0, -1).join("");
+      },
+      flush(){ commit(); return done; },
+      set(t){ done = t; c = v = f = ""; },
+      view(){ return [done, syl()]; },
+    };
+  };
+})();
+let kbd = null;   // 열린 입력 칸 { hg, ko, multi, ok, last }
+function kbdOpen(o, ok, basic){
+  let box = $("#kbd"); if (!box) { box = document.createElement("div"); box.id = "kbd"; document.body.appendChild(box); }
+  const hg = HG(); hg.set(o.value || "");
+  kbd = { hg, ko: kbd ? kbd.ko : true, multi:o.multi, ok, basic, last:{ code:"", t:0 }, o, lastBack:0, lastEnter:0, lastChar:0 };
+  box.innerHTML = `<div class="kcard ${o.multi ? "multi" : ""}" tabindex="-1"><div class="kt">${esc(o.title)}</div><div class="ked" id="kedTxt"></div><textarea id="kin" autocomplete="off" spellcheck="false"></textarea>
+    <div class="kf"><button class="kmode" data-k="mode"></button><span class="kh">${o.multi ? "Enter 줄 바꿈 · Ctrl+Enter 저장" : "Enter 저장"} · Esc 닫기 · <a data-k="basic">글자가 안 써지면</a></span><span style="flex:1"></span><span class="kdbg" id="kdbg"></span><button class="pill gray sm" data-k="no">취소</button><button class="pill sm" data-k="ok">확인</button></div></div>`;
+  box.classList.add("open"); kbd.nk = kbd.nc = 0; kinReset(); kbdDraw();
+}
+const KIN0 = "\u200b";   // 지우기(Backspace)도 알아채려고 숨은 칸에 늘 한 글자를 남겨 둔다
+function kinReset(){ const t = $("#kin"); if (!t) return; t.value = KIN0; t.focus({ preventScroll:true }); t.setSelectionRange(1, 1); }
+const ASCII_KEY = ch => /^[a-zA-Z]$/.test(ch) ? ["Key" + ch.toUpperCase(), ch !== ch.toLowerCase()] : null;
+document.addEventListener("input", e => {
+  if (!kbd || e.target.id !== "kin") return;
+  const t = e.target, v = t.value, hg = kbd.hg;
+  if (e.isComposing) return;   // 진짜 한글 입력기로 조합 중이면 끝날 때(compositionend) 받는다
+  kbd.nc++;
+  if (!v.startsWith(KIN0)) { if (performance.now() - kbd.lastBack > 40) hg.back(); }
+  const add = v.replace(KIN0, "");
+  if (!(add.length === 1 && performance.now() - kbd.lastChar < 40)) for (const ch of add) kinChar(ch);   // 키 신호로 이미 넣은 글자면 건너뜀
+  kinReset(); kbdDraw();
+}, true);
+document.addEventListener("compositionend", e => {
+  if (!kbd || e.target.id !== "kin") return;
+  kbd.hg.text(e.data || ""); kinReset(); kbdDraw();
+}, true);
+function kinChar(ch){
+  const hg = kbd.hg, now = performance.now();
+  if (ch === "\n" || ch === "\r") { if (now - kbd.lastEnter < 60) return; if (kbd.multi) hg.text("\n"); else kbdClose(true); return; }
+  const ak = ASCII_KEY(ch);
+  if (kbd.ko && ak) { const j = hg.jamo(ak[0], ak[1]); if (j) return hg.put(j); }
+  hg.text(ch);
+}
+function kbdDraw(){
+  if (!kbd) return; const [d, cur] = kbd.hg.view(), t = $("#kedTxt");
+  t.innerHTML = d || cur ? `${esc(d).replace(/\n/g, "<br>")}${cur ? `<u>${esc(cur)}</u>` : ""}<i class="kcar"></i>` : `<span class="kph">${esc(kbd.o.ph || "")}</span><i class="kcar"></i>`;
+  $("#kbd .kmode").textContent = kbd.ko ? "한" : "A"; $("#kbd .kmode").classList.toggle("en", !kbd.ko);
+  $("#kdbg").textContent = `키 ${kbd.nk} · 글자 ${kbd.nc}`;   // 시험용: 무엇이 넘어오는지
+}
+function kbdClose(save){
+  if (!kbd) return; const k = kbd; kbd = null; $("#kbd").classList.remove("open");
+  if (save) k.ok(k.hg.flush());
+}
+document.addEventListener("keydown", e => {
+  if (!kbd) return;
+  kbd.nk++; const hg = kbd.hg, t = performance.now();
+  if (!e.repeat && e.code === kbd.last.code && t - kbd.last.t < 30) { e.preventDefault(); return; }   // 같은 키가 두 번 넘어온 것
+  kbd.last = { code:e.code, t };
+  if (e.key === "HangulMode" || e.code === "Lang1" || e.code === "AltRight" || e.key === "KanaMode") { e.preventDefault(); hg.flush(); kbd.ko = !kbd.ko; }
+  else if (e.key === "Escape") { e.preventDefault(); return kbdClose(false); }
+  else if (e.key === "Enter") { e.preventDefault(); kbd.lastEnter = t; if (kbd.multi && !e.ctrlKey) hg.text("\n"); else return kbdClose(true); }
+  else if (e.key === "Backspace") { e.preventDefault(); kbd.lastBack = t; hg.back(); }
+  else if ((e.ctrlKey || e.metaKey) && e.code === "KeyV") return;   // 붙여넣기는 숨은 칸으로 들어온다(paste)
+  else if (e.ctrlKey || e.altKey || e.metaKey || e.key === "Process") return;
+  else if (e.key.length === 1) { e.preventDefault(); kbd.lastChar = t; kinChar(e.key); }
+  kbdDraw();
+}, true);
+document.addEventListener("mousedown", e => {
+  if (!kbd) return; const b = e.target.closest("[data-k]");
+  if (!e.target.closest(".kcard")) { e.preventDefault(); e.stopImmediatePropagation(); return kbdClose(false); }
+  e.preventDefault(); e.stopImmediatePropagation();
+  if (!b) { kinReset(); return; }
+  const k = b.dataset.k;
+  if (k === "mode") { kbd.hg.flush(); kbd.ko = !kbd.ko; kbdDraw(); kinReset(); }
+  else if (k === "ok") kbdClose(true);
+  else if (k === "no") kbdClose(false);
+  else if (k === "basic") { const f = kbd.basic; kbdClose(false); setTimeout(f, 0); }
+}, true);
+document.addEventListener("mouseup", e => {
+  const el = e.target.closest && e.target.closest(TEXTY); if (IN_LIVELY || !el || el.disabled || document.activeElement === el) return;
+  setTimeout(() => { if (document.activeElement !== el) { el.focus(); try { const n = el.value.length; el.setSelectionRange(n, n); } catch(_) {} } }, 0);
+}, true);
+let lastPaste = { el:null, txt:"", t:0 };
+document.addEventListener("paste", e => {
+  const txt = (e.clipboardData && e.clipboardData.getData("text")) || "", t = performance.now();
+  if (lastPaste.el === e.target && lastPaste.txt === txt && t - lastPaste.t < 500) { e.preventDefault(); e.stopImmediatePropagation(); return; }
+  lastPaste = { el:e.target, txt, t };
+}, true);
 // 마우스를 올리면 뜨는 기본 말풍선(title)은 윈도우의 작은 창이라 다른 프로그램 위에도 뜬다(Lively는 마우스 움직임을
 // 늘 넘겨줘서, 다른 창 뒤에 깔린 대시보드에도 말풍선이 생긴다). → 페이지 안에 그리는 말풍선으로 바꾼다(다른 창 뒤에선 안 보임).
 const tip = document.createElement("div"); tip.id = "tip"; document.body.appendChild(tip);
@@ -1142,7 +1339,7 @@ function mealHtml(T){
   return `<div class="meal"><span class="ico tint" style="--c:var(--orange)">${ICON.bowl}</span><div class="mt"><div class="mh2"><b>${T === ymd(now()) ? "오늘 급식" : mdw(T) + " 급식"}</b>${ml.cal ? `<span>${esc(ml.cal)}</span>` : ""}</div><div class="mm">${ml.menu.map(esc).join(" · ")}</div></div></div>`;
 }
 function attLabel(r){
-  const base = r.reason === "출석인정" ? `출석인정(${r.type})` : `${r.reason}${r.type}`, p = [].concat(r.p ?? []);
+  const base = r.reason === "출석인정" ? `출석인정(${r.type}${r.sub ? "·" + r.sub : ""})` : `${r.reason}${r.type}`, p = [].concat(r.p ?? []);
   return p.length ? `${base} · ${MULTI(r.type) ? p.map(perName).join("·") : perLbl(r.type, p[0])}` : base;
 }
 // 교시 값: 0 = 조회, 99 = 종례. 결과·결석은 여러 개, 지각은 '~까지', 조퇴는 '~부터'
@@ -1159,12 +1356,23 @@ function attRangeFrom(t){
   if (attRange === "sem") return mo >= 3 && mo <= 8 ? `${y}-03-01` : `${mo >= 9 ? y : y - 1}-09-01`;
   return `${sy}-03-01`;
 }
+// 나이스 '학급별 출결현황' 합계(S.attBase)가 이 기간을 다 덮으면: 그 합계 + 합계 끝난 다음 날부터의 대시보드 기록
+const attBaseOn = (from, to) => !!(S.attBase && from <= S.attBase.from && S.attBase.to <= to);
 function attStats(from, to){
-  const st = {};
-  for (const d of Object.keys(S.att).filter(d => d >= from && d <= to).sort())
+  const st = {}, B = attBaseOn(from, to) ? S.attBase : null, blank = () => ({ abs:0, absR:{}, late:0, early:0, res:0, unexc:0, docs:0, absDates:[] });
+  if (B) for (const [no, x] of Object.entries(B.rows)) {
+    const s = st[no] = blank(), sum = o => Object.values(o || {}).reduce((a, v) => a + v, 0);
+    for (const [k, v] of Object.entries(x.abs || {})) if (v) {
+      if (k === "인정") { const trip = Math.min(v, (B.trip || {})[no] || 0); if (trip) s.absR.현체 = trip; if (v - trip) s.absR.생결 = v - trip; }
+      else { s.absR[k] = (s.absR[k] || 0) + v; s.abs += v; }
+    }
+    s.late = sum(x.late); s.early = sum(x.early); s.res = sum(x.res);
+    s.unexc = ["abs", "late", "early", "res"].reduce((a, k) => a + ((x[k] || {}).미인정 || 0), 0);
+  }
+  for (const d of Object.keys(S.att).filter(d => d >= from && d <= to && !(B && d <= B.to)).sort())
     for (const [no, r] of Object.entries(S.att[d])) {
-      const s = st[no] = st[no] || { abs:0, absR:{}, late:0, early:0, res:0, unexc:0, docs:0, absDates:[] };
-      if (r.type === "결석") { s.absR[r.reason] = (s.absR[r.reason] || 0) + 1; if (r.reason !== "출석인정") { s.abs++; s.absDates.push(d); } }
+      const s = st[no] = st[no] || blank();
+      if (r.type === "결석") { const key = r.reason === "출석인정" ? (r.sub || "생결") : r.reason; s.absR[key] = (s.absR[key] || 0) + 1; if (r.reason !== "출석인정") { s.abs++; s.absDates.push(d); } }
       else if (r.type === "지각") s.late++; else if (r.type === "조퇴") s.early++; else if (r.type === "결과") s.res++;
       if (r.reason === "미인정") s.unexc++;
       if (!r.doc && r.reason !== "미인정") s.docs++;
@@ -1180,18 +1388,28 @@ function attStats(from, to){
   return st;
 }
 const attFlags = s => [s.streak >= 3 ? `<span class="flag r">연속 ${s.streak}일 결석</span>` : "", s.unexc >= 3 ? `<span class="flag o">미인정 ${s.unexc}회</span>` : "", s.docs ? `<span class="flag y">서류 ${s.docs}건</span>` : ""].join("");
+function sumTable(nos, st){
+  return `<div class="sumt num"><div class="sh"><span>번호</span><span>결석</span><span>지각</span><span>조퇴</span><span>결과</span><span></span></div>` + nos.map(no => {
+    const s = st[no] || { abs:0, absR:{}, late:0, early:0, res:0 }, nm = S.roster[no] ? " " + esc(maskName(S.roster[no])) : "";
+    const br = Object.entries(s.absR).filter(([, v]) => v).map(([k, v]) => `${k === "출석인정" ? "인정" : k === "현체" || k === "생결" ? k : k[0]}${v}`).join("·");
+    return `<div class="sr"><b>${no}번${nm}</b><span>${s.abs}${br ? `<small>${br}</small>` : ""}</span><span>${s.late}</span><span>${s.early}</span><span>${s.res}</span><span class="fl">${s.absDates ? attFlags(s) : ""}</span></div>`;
+  }).join("") + `</div>`;
+}
+function attSumAllHtml(){
+  const t = now(), T = ymd(t), from = attRangeFrom(t), st = attStats(from, T), n = +S.settings.rosterCount || 0, gone = new Set(S.settings.gone || []);
+  const all = Array.from({ length:n }, (_, i) => i + 1).filter(x => !gone.has(x)), half = Math.ceil(all.length / 2);
+  return `<h3>누적 출결 · ${mdw(from)} ~ 오늘</h3><div class="sumall">${sumTable(all.slice(0, half), st)}${sumTable(all.slice(half), st)}</div>
+    <div class="popf"><span class="hint">${attBaseOn(from, T) ? `나이스 합계(${md(S.attBase.from)}~${md(S.attBase.to)}) + 그 뒤 대시보드 기록` : "대시보드에 기록한 출결"}</span><button class="pill sm" data-act="popClose">닫기</button></div>`;
+}
 function renderAttSum(t){
   const T = ymd(t), from = attRangeFrom(t), st = attStats(from, T), nos = Object.keys(st).map(Number).sort((a, b) => a - b);
   const tot = { abs:0, late:0, early:0, res:0 }; let warn = 0;
   nos.forEach(no => { const s = st[no]; tot.abs += s.abs; tot.late += s.late; tot.early += s.early; tot.res += s.res; if (s.streak >= 3 || s.unexc >= 3) warn++; });
   let h = `<div class="sumbar"><div class="seg">${[["month","이번 달"],["sem","이번 학기"],["year","학년도"]].map(([v, l]) => `<button data-act="attRange" data-v="${v}" class="${attRange === v ? "sel" : ""}">${l}</button>`).join("")}</div><span class="hint num">${mdw(from)} ~ 오늘</span></div>
     <div class="tiles num t5"><div class="t-abs"><b>${tot.abs}</b><span>결석(일)</span></div><div class="t-late"><b>${tot.late}</b><span>지각</span></div><div class="t-early"><b>${tot.early}</b><span>조퇴</span></div><div class="t-res"><b>${tot.res}</b><span>결과</span></div><div class="${warn ? "t-warn" : ""}"><b>${warn}</b><span>살펴볼 학생</span></div></div>`;
-  if (!nos.length) return h + `<p class="hint" style="margin:.8rem 0 0">이 기간에 기록된 결석·지각·조퇴·결과가 없어요.</p>`;
-  h += `<div class="sumt num"><div class="sh"><span>번호</span><span>결석</span><span>지각</span><span>조퇴</span><span>결과</span><span></span></div>` + nos.map(no => {
-    const s = st[no], nm = S.roster[no] ? " " + esc(maskName(S.roster[no])) : "";
-    const br = Object.entries(s.absR).filter(([, v]) => v).map(([k, v]) => `${k === "출석인정" ? "인정" : k[0]}${v}`).join("·");
-    return `<div class="sr"><b>${no}번${nm}</b><span>${s.abs}${br ? `<small>${br}</small>` : ""}</span><span>${s.late}</span><span>${s.early}</span><span>${s.res}</span><span class="fl">${attFlags(s)}</span></div>`;
-  }).join("") + `</div><p class="hint" style="margin:.7rem 0 0">이 컴퓨터에 기록한 출결이에요. 나이스 출결과 대조할 때 쓰세요.</p>`;
+  const has = no => { const x = st[no]; return x.abs || x.late || x.early || x.res || Object.values(x.absR).some(Boolean); }, shown = nos.filter(has);
+  if (!shown.length) return h + `<p class="hint" style="margin:.8rem 0 0">이 기간에 기록된 결석·지각·조퇴·결과가 없어요.</p>`;
+  h += `<button class="pill" data-act="attSumAll" style="margin:.9rem 0 0;width:100%">학생별 누적표 보기 ›</button><p class="hint" style="margin:.6rem 0 0">기록 있는 학생 ${shown.length}명 · ${attBaseOn(from, T) ? `나이스 합계(${md(S.attBase.from)}~${md(S.attBase.to)}) + 그 뒤 대시보드에 기록한 출결이에요.` : "이 컴퓨터에 기록한 출결이에요. 나이스 출결과 대조할 때 쓰세요." + (S.attBase ? " 나이스 합계는 '학년도'에서 함께 보여요." : "")}</p>`;
   return h;
 }
 function renderAtt(t){
@@ -1264,15 +1482,15 @@ const EXAM_RE = /(정기\s*시험|지필|중간\s*고사|기말\s*고사)/;
    한 단원 = 기본 1시간, 양이 많으면 h 를 늘리고 뒤 단원은 그만큼 밀린다. S.lessons 는 여기서 펼쳐 만든다. */
 const unitKey = t => String(t).replace(/\s*\(\d+\/\d+\)$/, "");
 function expandUnits(U){ const out = []; U.list.forEach(u => { for (let i = 1; i <= u.h; i++) out.push(u.h > 1 ? `${u.t} (${i}/${u.h})` : u.t); }); return out; }
-function unitsText(U){ const out = []; U.list.forEach((u, i) => { if (U.cuts.includes(i)) out.push("── 시험 ──"); out.push(u.t + (u.h > 1 ? ` ×${u.h}` : "")); }); return out.join("\n"); }
+function unitsText(U){ const out = []; U.list.forEach((u, i) => { if (U.cuts.includes(i)) out.push((U.full || []).includes(i) ? "── 시험 전범위 ──" : "── 시험 ──"); out.push(u.t + (u.h > 1 ? ` ×${u.h}` : "")); }); return out.join("\n"); }
 function parseUnits(text){
-  const list = [], cuts = [];
+  const list = [], cuts = [], full = [];
   text.split("\n").map(x => x.trim()).filter(Boolean).forEach(x => {
-    if (/^[─—=]{2}/.test(x)) { if (!cuts.includes(list.length)) cuts.push(list.length); return; }   // 맨 앞이면 '지난 시험 뒤부터' 목록
+    if (/^[─—=]{2}/.test(x)) { if (!cuts.includes(list.length)) cuts.push(list.length); if (/전범위/.test(x)) full.push(list.length); return; }   // 맨 앞이면 '지난 시험 뒤부터' 목록
     const m = x.match(/^(.*\S)\s+[×x*]\s?(\d)$/);
     list.push(m ? { t:m[1], h:+m[2] || 1 } : { t:unitKey(x), h:1 });
   });
-  return { list, cuts };
+  return full.length ? { list, cuts, full } : { list, cuts };
 }
 function meetingsBetween(cls, subj, from, to){   // from 이상 to 미만 날짜의 이 반 수업 수 (시험·휴일 빼고)
   let n = 0;
@@ -1289,8 +1507,9 @@ function unitInfo(cls, subj, U){
   const exams = S.events.filter(e => e.type === "시험" && EXAM_RE.test(e.title) && (!sem || e.start >= sem.start)).sort((a, b) => a.start.localeCompare(b.start));
   const np = exams.filter(e => e.start <= T).length, next = exams[np];
   const cutL = U.cuts.map(ci => U.list.slice(0, ci).reduce((a, u) => a + u.h, 0));
-  const base = np ? cutL[np - 1] || 0 : 0, end = cutL[np] != null ? cutL[np] : list.length;
-  const segStart = np ? ymd(addDays(parseYmd(exams[np - 1].end || exams[np - 1].start), 1)) : sem ? sem.start : T;
+  const full = (U.full || []).includes(U.cuts[np]);   // 이번 시험이 전범위면 학기 처음부터 센다
+  const base = np && !full ? cutL[np - 1] || 0 : 0, end = cutL[np] != null ? cutL[np] : list.length;
+  const segStart = np && !full ? ymd(addDays(parseYmd(exams[np - 1].end || exams[np - 1].start), 1)) : sem ? sem.start : T;
   const close = S.events.find(e => /방학식|종업식/.test(e.title) && e.start >= T);
   const segEnd = next ? next.start : close ? close.start : ymd(addDays(now(), 60));
   const used = skips.filter(x => x >= segStart && x < segEnd).length;
@@ -1505,7 +1724,9 @@ function calPopHtml(){
     const evs = S.events.filter(e => NOSAT(e) && (e.end || e.start) >= A && e.start <= Z).sort((a, b) => a.start.localeCompare(b.start));
     h += `<div class="cwr ${T >= A && T <= Z ? "now" : ""}"><div class="mg num">${[0,1,2,3,4,5,6].map(i => dayCell(addDays(ws, i), mo, T, marks)).join("")}</div><div class="cwl">${evs.length ? evs.map(e => evRow(e, T, true)).join("") : `<span class="hint">일정 없음</span>`}</div></div>`;
   }
-  return `<h3>학사일정</h3>${h}<div class="popf"><span class="hint">‹ › 로 다른 달</span><button class="pill sm" data-act="popClose">닫기</button></div>`;
+  const d0 = ymd(calMonth.getMonth() === t.getMonth() && calMonth.getFullYear() === t.getFullYear() ? t : calMonth);
+  return `<h3>학사일정</h3>${h}<form class="add evadd" data-form="ev" autocomplete="off"><input class="inp" type="date" name="d" value="${d0}" title="시작"><span class="hint">~</span><input class="inp" type="date" name="e" title="끝 (하루면 비워 두세요)"><input class="inp" name="t" placeholder="일정 추가 (예: 생기부 마감)"><label class="hint evdd"><input type="checkbox" name="dd"> D-day</label><button class="pill sm" type="submit">추가</button></form>
+    <div class="popf"><span class="hint">‹ › 로 다른 달 · 추가한 일정은 설정 → 학사일정에서 고치거나 지울 수 있어요</span><button class="pill sm" data-act="popClose">닫기</button></div>`;
 }
 // 위젯은 스크롤하지 않는다(Lively는 휠을 넘겨주지 않는다). 넘치면 내용을 조금씩 줄여서 한 칸에 맞춘다(최소 62%).
 function fitWidgets(){
@@ -1515,6 +1736,12 @@ function fitWidgets(){
   });
 }
 addEventListener("resize", () => fitWidgets());
+function hangLights(){
+  const L = $("#lights"), cols = ["#ff4d4d", "#ffc93c", "#3ddc84", "#4da3ff", "#ff7ad9"];
+  L.innerHTML = Array.from({ length: Math.ceil(innerWidth / 56) }, (_, i) => `<i style="left:${i * 56 + 28}px;--b:${cols[i % cols.length]}"></i>`).join("");
+  document.querySelectorAll(".hang").forEach(h => { h.style.animation = "none"; h.style.setProperty("--hang", Math.max(20, h.getBoundingClientRect().top - 10) + "px"); h.style.animation = ""; });
+}
+addEventListener("resize", hangLights); addEventListener("load", hangLights); setTimeout(hangLights, 1500);
 function renderAll(){
   const t = now();
   applyLook(); renderClock(t); renderHeader(t); renderStatus(t);
@@ -1524,6 +1751,7 @@ function renderAll(){
 
 /* ---------- 팝오버 (출결 · 수업 교환) ---------- */
 let popNo = 0, popPer = null, popProg = null, popTask = false, popCal = false;
+let smsX = null, smsArr = 0, smsEdit = null, smsBase = "";   // 보호자 문자: 기록 없이 문자만(도착·미등교), 도착 교시, 고쳐 쓴 문구
 function placePop(el){
   const pop = $("#pop"), r = el.getBoundingClientRect(); pop.classList.add("open");
   const w = pop.offsetWidth, h = pop.offsetHeight;
@@ -1532,13 +1760,13 @@ function placePop(el){
   if (y < 8) { y = Math.max(8, Math.min(innerHeight - h - 8, r.top)); x = r.right + 10; }
   pop.style.left = Math.min(Math.max(8, x), innerWidth - w - 8) + "px"; pop.style.top = Math.max(8, y) + "px";
 }
-function openPop(no, el){ popTask = false; popCal = false; popProg = null; popPer = null; popWeek = null; $("#pop").classList.remove("wide"); popNo = no; renderPop(); placePop(el); }
-function openPer(p, el){ popTask = false; popCal = false; popProg = null; popNo = 0; popWeek = null; $("#pop").classList.remove("wide"); popTab = "memo"; memoMode = "d"; popPer = { dk: ymd(viewDay(now())), p }; renderPop(); placePop(el); }
-function closePop(){ popTask = false; popCal = false; popNo = 0; popPer = null; popProg = null; popWeek = null; $("#pop").classList.remove("open", "wide", "calbig"); }
-function openProg(k, el){ popTask = false; popCal = false; popNo = 0; popPer = null; popWeek = null; $("#pop").classList.remove("wide"); popProg = k; renderPop(); placePop(el); }
-function openWeek(el){ popTask = false; popCal = false; popNo = 0; popPer = null; popProg = null; popWeek = 0; $("#pop").classList.add("wide"); renderPop(); placePop(el); }
-function openCal(el){ popNo = 0; popPer = null; popProg = null; popWeek = null; popTask = false; popCal = true; calMonth = null; $("#pop").classList.remove("wide"); renderPop(); placePop(el); }
-function openTask(el){ popCal = false; popNo = 0; popPer = null; popProg = null; popWeek = null; popTask = true; $("#pop").classList.add("wide"); renderPop(); placePop(el); }
+function openPop(no, el){ popTask = false; popCal = false; popSum = false; popProg = null; popPer = null; popWeek = null; $("#pop").classList.remove("wide"); if (popNo !== no) { smsX = null; smsArr = 0; smsEdit = null; } popNo = no; renderPop(); placePop(el); }
+function openPer(p, el){ popSum = false; popTask = false; popCal = false; popProg = null; popNo = 0; popWeek = null; $("#pop").classList.remove("wide"); popTab = "memo"; memoMode = "d"; popPer = { dk: ymd(viewDay(now())), p }; renderPop(); placePop(el); }
+function closePop(){ popSum = false; smsX = null; smsArr = 0; smsEdit = null; popTask = false; popCal = false; popNo = 0;popPer = null; popProg = null; popWeek = null; $("#pop").classList.remove("open", "wide", "calbig"); }
+function openProg(k, el){ popSum = false; popTask = false; popCal = false; popNo = 0; popPer = null; popWeek = null; $("#pop").classList.remove("wide"); popProg = k; renderPop(); placePop(el); }
+function openWeek(el){ popSum = false; popTask = false; popCal = false; popNo = 0; popPer = null; popProg = null; popWeek = 0; $("#pop").classList.add("wide"); renderPop(); placePop(el); }
+function openCal(el){ popSum = false; popNo = 0; popPer = null; popProg = null; popWeek = null; popTask = false; popCal = true; calMonth = null; $("#pop").classList.remove("wide"); renderPop(); placePop(el); }
+function openTask(el){ popSum = false; popCal = false; popNo = 0; popPer = null; popProg = null; popWeek = null; popTask = true; $("#pop").classList.add("wide"); renderPop(); placePop(el); }
 function taskAllHtml(){
   const T = ymd(now()), tasks = allTasks().filter(x => !x.done || dayDiff(x.due, T) <= 3).sort((a, b) => (a.due + (a.time || "")).localeCompare(b.due + (b.time || "")));
   const row = x => `<div class="tk ${x.done ? "done" : ""}"><button class="ring ${x.done ? "on" : ""}" data-act="task" data-id="${esc(x.id)}" title="${x.done ? "다시 할 일로" : "다 했어요"}">${x.done ? ICON.check : ""}</button>
@@ -1571,8 +1799,11 @@ let popTab = "memo", memoMode = "d";
 function memoOf(dk, p){ const w = parseYmd(dk).getDay(); return [(S.wmemos[w + "|" + p] || "").trim(), (S.memos[dk + "|" + p] || "").trim()].filter(Boolean).join(" · "); }
 function memoKey(){ const { dk, p } = popPer; return memoMode === "w" ? ["wmemos", parseYmd(dk).getDay() + "|" + p] : ["memos", dk + "|" + p]; }
 function setMemo(v){ const [store, k] = memoKey(); v = (v || "").replace(/\s+/g, " ").trim(); if (v) S[store][k] = v; else delete S[store][k]; save(); renderAll(); }
+let popSum = false;
+function openSum(el){ popNo = 0; popPer = null; popProg = null; popWeek = null; popTask = false; popCal = false; popSum = true; $("#pop").classList.remove("wide"); renderPop(); placePop(el); }
 function renderPop(){
-  $("#pop").classList.toggle("calbig", !!popCal);
+  $("#pop").classList.toggle("calbig", !!(popCal || popSum));
+  if (popSum) { $("#pop").innerHTML = attSumAllHtml(); return; }
   if (popTask) { $("#pop").innerHTML = taskAllHtml(); return; }
   if (popCal) { $("#pop").innerHTML = calPopHtml(); return; }
   if (popWeek != null) { $("#pop").innerHTML = weekHtml(); return; }
@@ -1606,9 +1837,12 @@ function renderPop(){
     <div class="agrid">
       ${ATT_TYPES.map(ty => `<span class="ar" style="color:${ATT_COLOR[ty]}">${ty}</span>` + RS.map(([rv, l]) => `<button data-act="attSet" data-t="${ty}" data-r="${rv}" class="${r && r.type === ty && r.reason === rv ? "sel" : ""}" title="${rv === "출석인정" ? "출석인정 " + ty : rv + ty}">${rv === "출석인정" ? "인정" : l}</button>`).join("")).join("")}
     </div>
-    ${r ? `<div class="lb">${MULTI(r.type) ? "빠진 교시 (여러 개 고를 수 있어요)" : r.type === "지각" ? "몇 교시까지" : "몇 교시부터"}</div><div class="segs">${[0, ...Array.from({ length:S.bells.length || 7 }, (_, i) => i + 1), 99].map(n => `<button data-act="attPer" data-n="${n}" class="${[].concat(r.p ?? []).includes(n) ? "sel" : ""}">${n === 0 ? "조회" : n === 99 ? "종례" : n}</button>`).join("")}</div>` : ""}
+    ${r && r.type === "결석" && r.reason === "출석인정" ? `<div class="lb">인정 사유</div><div class="segs">${["현체", "생결"].map(v => `<button data-act="attSub" data-v="${v}" class="${r.sub === v ? "sel" : ""}">${v}</button>`).join("")}</div>` : ""}
+    ${r && r.type !== "결석" ? `<div class="lb">${MULTI(r.type) ? "빠진 교시 (여러 개 고를 수 있어요)" : r.type === "지각" ? "몇 교시까지" : "몇 교시부터"}</div><div class="segs">${[0, ...Array.from({ length:S.bells.length || 7 }, (_, i) => i + 1), 99].map(n => `<button data-act="attPer" data-n="${n}" class="${[].concat(r.p ?? []).includes(n) ? "sel" : ""}">${n === 0 ? "조회" : n === 99 ? "종례" : n}</button>`).join("")}</div>` : ""}
+    ${smsHtml(r)}
     <div class="popf"><button class="pill sm ${r && r.doc ? "" : "gray"}" data-act="attDoc" ${r ? "" : "disabled"}>${r && r.doc ? "✓ 서류 받음" : "서류 받음"}</button><span style="display:flex;gap:.3rem">${r ? `<button class="pill sm gray" data-act="attClear">출석으로</button>` : ""}<button class="pill sm" data-act="popClose">닫기</button></span></div>
     <button class="ghost sm" data-act="attGone" style="margin-top:.5rem">자퇴·전출로 번호 빼기</button>`;
+  smsFit();
 }
 function setOvr(v){
   if (!popPer) return;
@@ -1624,6 +1858,67 @@ function attRec(create){
   const T = attYmd(); S.att[T] = S.att[T] || {};
   if (!S.att[T][popNo] && create) S.att[T][popNo] = { type:"결석", reason:"질병", doc:false };
   return S.att[T][popNo];
+}
+
+/* ---------- 보호자 문자 (e알리미로 복사해 보내기) ---------- */
+const EALIMI_URL = "https://www.ealimi.com/Write/Sms";
+const SMS_HI = "안녕하세요, 보호자님. ";
+const SMS_NEIS = "나이스 학부모서비스에서 증빙서류(진료확인서 또는 처방전 등)를 첨부하여 출결 신청 부탁드립니다. 감사합니다.";
+const SMS_NEIS_OK = "나이스 학부모서비스에서 관련 증빙서류를 첨부하여 출결 신청 부탁드립니다. 감사합니다.";
+const SMS_ASK = "질병 등 다른 사유가 있으시면 담임에게 연락 부탁드립니다. 감사합니다.";
+// 이시연 → 시연이가, 지유 → 지유가 (3글자는 성 1자, 4글자는 성 2자, 2글자는 이름만으로 봄)
+function smsName(no){
+  const n = String(S.roster[no] || "").trim();
+  if (!n) return `${no}번 학생이`;
+  const f = n.length >= 4 ? n.slice(2) : n.length === 3 ? n.slice(1) : n, c = f.charCodeAt(f.length - 1) - 0xAC00;
+  return f + (c >= 0 && c < 11172 && c % 28 ? "이가" : "가");
+}
+const smsLast = () => S.bells.length || 7;
+const smsArrive = n => n === 0 ? "조회 시간에" : n === 99 ? "종례 시간에" : `${n}교시 중간에`;   // 지각 'n교시까지' → n교시 중간에 등교
+const smsLeave = n => n === 0 ? "조회 전에" : n === 1 ? "조회 후" : `${n === 99 ? smsLast() : n - 1}교시 후`;   // 조퇴 'n교시부터' → n-1교시 후
+function smsMiss(p){   // 결과: 3,4 → 3~4교시 / 조회,1 → 조회·1교시
+  const a = [].concat(p ?? []), nums = a.filter(n => n > 0 && n < 99);
+  if (nums.length === a.length && nums.length > 1 && nums[nums.length - 1] - nums[0] === nums.length - 1) return `${nums[0]}~${nums[nums.length - 1]}교시`;
+  return a.map(n => n === 0 ? "조회" : n === 99 ? "종례" : n + "교시").join("·");
+}
+// null = 문자 칸 없음, "" = 교시를 더 골라야 함, 그 밖 = 완성된 문구
+function smsText(r){
+  const nm = smsName(popNo);
+  if (smsX === "미등교") return SMS_HI + `현재 ${nm} 등교하지 않았고 아이와도 연락이 닿지 않아 문자드립니다. 확인 후 담임에게 연락 부탁드립니다. 감사합니다.`;
+  if (smsX === "도착") return smsArr ? SMS_HI + `오늘 ${nm} 학교에 도착하여 ${smsArr}교시부터 수업에 참여합니다. 감사합니다.` : "";
+  if (!r) return null;
+  const p = r.p, n1 = [].concat(p ?? [])[0];
+  const make = {
+    질병지각: () => `오늘 ${nm} 병원 진료 후 ${smsArrive(n1)} 등교했습니다. 질병지각 처리를 위해 ${SMS_NEIS}`,
+    질병조퇴: () => `오늘 ${nm} 병원 진료를 위해 ${smsLeave(n1)} 조퇴했습니다. 진료 후 질병조퇴 처리를 위해 ${SMS_NEIS}`,
+    질병결과: () => `오늘 ${nm} 병원 진료로 ${smsMiss(p)} 수업에 참여하지 못했습니다. 질병결과 처리를 위해 ${SMS_NEIS}`,
+    미인정지각: () => `오늘 ${nm} 별도의 사유 없이 ${smsArrive(n1)} 등교하여 미인정지각으로 처리될 예정입니다. ${SMS_ASK}`,
+    미인정조퇴: () => `오늘 ${nm} 별도의 사유 없이 ${smsLeave(n1)} 조퇴하여 미인정조퇴로 처리될 예정입니다. ${SMS_ASK}`,
+    미인정결과: () => `오늘 ${nm} 별도의 사유 없이 ${smsMiss(p)} 수업에 참여하지 않아 미인정결과로 처리될 예정입니다. ${SMS_ASK}`,
+    출석인정지각: () => `오늘 ${nm} ${smsArrive(n1)} 등교했습니다. 출석인정지각 처리를 위해 ${SMS_NEIS_OK}`,
+    출석인정조퇴: () => `오늘 ${nm} ${smsLeave(n1)} 조퇴했습니다. 출석인정조퇴 처리를 위해 ${SMS_NEIS_OK}`,
+  }[r.reason + r.type];
+  if (!make) return null;
+  return n1 == null ? "" : SMS_HI + make();
+}
+function smsHtml(r){
+  const t = smsText(r);
+  smsBase = t || "";
+  const txt = smsEdit && smsEdit.base === smsBase ? smsEdit.text : smsBase;
+  const box = t == null ? "" : `<div class="smsb"><div class="lb">보호자 문자</div>${t
+    ? `<textarea class="inp smsta" id="smsTa" spellcheck="false">${esc(txt)}</textarea><button class="pill sm" data-act="smsCopy">복사하고 e알리미 열기</button>`
+    : `<span class="hint">${smsX === "도착" ? "아래에서 몇 교시부터 수업 듣는지 골라 주세요" : "교시를 고르면 문자가 만들어져요"}</span>`}</div>`;
+  const L = smsLast();
+  return box + `<div class="smsx"><div class="lb">기록 없이 문자만</div><div class="segs">${["도착", "미등교"].map(v => `<button data-act="smsX" data-v="${v}" class="${smsX === v ? "sel" : ""}">${v} 문자</button>`).join("")}</div>${smsX === "도착"
+    ? `<div class="smsxa"><div class="lb">몇 교시부터 수업 듣나요?</div><div class="segs">${Array.from({ length:L }, (_, i) => i + 1).map(n => `<button data-act="smsArr" data-n="${n}" class="${smsArr === n ? "sel" : ""}">${n}</button>`).join("")}</div></div>` : ""}</div>`;
+}
+// 문자 칸을 글 길이만큼 늘리고, 길어진 창이 화면 아래로 넘치면 끌어올린다 (Lively는 휠이 없어 스크롤 대신)
+function smsFit(){
+  const ta = $("#smsTa"), pop = $("#pop");
+  if (ta) { ta.style.height = "auto"; ta.style.height = ta.scrollHeight + 2 + "px"; }
+  if (!pop.classList.contains("open")) return;
+  const h = pop.offsetHeight, t = parseFloat(pop.style.top) || 8;
+  if (t + h > innerHeight - 8) pop.style.top = Math.max(8, innerHeight - h - 8) + "px";
 }
 
 /* ---------- 알림 ---------- */
@@ -2428,11 +2723,83 @@ async function importFile(file, kind, dz){
     try { applyPB(await readAny(file), el.dataset.subj, el); } catch(e) { out.innerHTML = `<p class="impMsg err">${readErr(e)}</p>`; }
     return;
   }
+  if (kind === "attx") {
+    const o = $("#attxOut"); o.innerHTML = `<p class="impMsg">“${esc(file.name)}” 읽는 중…</p>`;
+    try { const blocks = await readAny(file), b = extractAttBase(blocks), tr = !b && extractTrips(blocks);
+      if (tr) {
+        if (!S.attBase) { o.innerHTML = `<p class="impMsg err">교외체험학습 목록이에요. 먼저 나이스 '학급별 출결현황' 엑셀을 넣은 뒤 다시 넣어 주세요.</p>`; return; }
+        const B = S.attBase, trip = {};
+        for (const x of tr) { let n = 0; for (let d = parseYmd(x.from); ymd(d) <= x.to; d = addDays(d, 1)) if (ymd(d) >= B.from && ymd(d) <= B.to && isSchoolDay(d)) n++; if (n) trip[x.no] = (trip[x.no] || 0) + n; }
+        B.trip = trip; save(); renderAll(); o.innerHTML = attBaseMsg() + `<p class="impMsg ok">✓ 교외체험학습 ${tr.length}건으로 현체 일수를 채웠어요 · 틀리면 − / + 로 고치세요</p>`; return;
+      }
+      if (!b) { o.innerHTML = `<p class="impMsg err">표를 찾지 못했어요. 나이스 '학급별 출결현황' 또는 '교외체험학습현황 목록' 엑셀인지 확인해 주세요.</p>`; return; }
+      b.trip = (S.attBase || {}).trip || {}; S.attBase = b; save(); renderAll(); o.innerHTML = attBaseMsg(true); }
+    catch(e) { o.innerHTML = `<p class="impMsg err">${readErr(e)}</p>`; }
+    return;
+  }
   const out = $(kind === "tt" ? "#ttOut" : "#calOut");
   out.innerHTML = `<p class="impMsg">“${esc(file.name)}” 읽는 중…</p>`;
   let blocks;
   try { blocks = await readAny(file); } catch(e) { out.innerHTML = `<p class="impMsg err">${readErr(e)}</p>`; return; }
   kind === "tt" ? applyTT(blocks) : applyCal(blocks);
+}
+/* 나이스 '학급별 출결현황' 엑셀 → { from, to, rows: { 번호: { abs|late|early|res: { 질병, 미인정, 기타, 인정 } } } } (이름은 저장하지 않음) */
+function extractAttBase(blocks){
+  const CAT = { 결석:"abs", 지각:"late", 조퇴:"early", 결과:"res" }, SUB = ["질병", "미인정", "기타", "인정"];
+  for (const blk of blocks) {
+    if (blk.type !== "table") continue;
+    const cells = [...blk.cells.values()], txt = c => c.lines.join("").replace(/\s/g, "");
+    const hd = cells.find(c => txt(c) === "번호"); if (!hd) continue;
+    const cats = cells.filter(c => c.row === hd.row && (CAT[txt(c)] || /총계/.test(txt(c)))).sort((a, b) => a.col - b.col);
+    const colMap = {};
+    for (const c of cells.filter(c => c.row === hd.row + 1 && SUB.includes(txt(c)))) {
+      const cat = cats.filter(k => k.col <= c.col).pop();
+      if (cat && CAT[txt(cat)]) colMap[c.col] = [CAT[txt(cat)], txt(c)];
+    }
+    if (Object.keys(colMap).length < 8) continue;
+    const rows = {};
+    for (const c of cells) {
+      if (c.col !== hd.col || c.row <= hd.row + 1 || !/^\d+(\.0+)?$/.test(txt(c))) continue;
+      const no = parseInt(txt(c)); if (no < 1 || no > 60) continue;
+      const x = rows[no] = { abs:{}, late:{}, early:{}, res:{} };
+      for (const [col, [k, sub]] of Object.entries(colMap)) { const v = blk.cells.get(c.row + ":" + col); x[k][sub] = v ? (parseFloat(txt(v)) || 0) : 0; }
+    }
+    if (!Object.keys(rows).length) continue;
+    const ds = cells.flatMap(c => (txt(c).match(/20\d{2}[.\-]\d{1,2}[.\-]\d{1,2}/g) || [])).map(d => { const [y, m, dd] = d.split(/[.\-]/); return `${y}-${pad(+m)}-${pad(+dd)}`; }).sort();
+    if (!ds.length) return null;
+    return { from: ds[0] < `${schoolYear(parseYmd(ds[ds.length - 1]))}-03-01` ? `${schoolYear(parseYmd(ds[ds.length - 1]))}-03-01` : ds[0], to: ds[ds.length - 1], rows };
+  }
+  return null;
+}
+/* 나이스 '교외체험학습현황 목록' → [{ no, from, to }] (보고서 체험기간, 없으면 신청서 체험기간) */
+function extractTrips(blocks){
+  for (const blk of blocks) {
+    if (blk.type !== "table") continue;
+    const cells = [...blk.cells.values()], txt = c => c.lines.join("").replace(/\s/g, "");
+    const noH = cells.find(c => txt(c) === "번호"), perH = cells.find(c => /보고서체험기간/.test(txt(c))) || cells.find(c => /체험기간/.test(txt(c)));
+    if (!noH || !perH || noH.row !== perH.row) continue;
+    const out = [];
+    for (const c of cells) {
+      if (c.col !== noH.col || c.row <= noH.row || !/^\d+(\.0+)?$/.test(txt(c))) continue;
+      const v = blk.cells.get(c.row + ":" + perH.col), ds = v ? (txt(v).match(/20\d{2}[.\-]\d{1,2}[.\-]\d{1,2}/g) || []) : [];
+      if (!ds.length) continue;
+      const iso = d => { const [y, m, dd] = d.split(/[.\-]/); return `${y}-${pad(+m)}-${pad(+dd)}`; };
+      out.push({ no: parseInt(txt(c)), from: iso(ds[0]), to: iso(ds[ds.length - 1]) });
+    }
+    if (out.length) return out;
+  }
+  return null;
+}
+function attBaseMsg(fresh){
+  const B = S.attBase; if (!B) return "";
+  return `<p class="impMsg ok">${fresh ? "✓ 넣었어요 · " : ""}나이스 합계 ${md(B.from)}~${md(B.to)} · 학생 ${Object.keys(B.rows).length}명 · 그 뒤 출결은 대시보드 기록으로 더해져요 <button class="ghost sm" data-act="attBaseDel">지우기</button></p>
+    ${tripRows(B)}`;
+}
+function tripRows(B){
+  const nos = Object.keys(B.rows).map(Number).filter(n => (B.rows[n].abs || {}).인정).sort((a, b) => a - b);
+  if (!nos.length) return "";
+  return `<div class="gl">현체 일수 <span class="rh" style="display:inline">· 나이스 인정결석 중 현장체험학습 일수예요. 나머지는 생결로 세요</span></div><div class="grp trip">${nos.map(n => { const v = B.rows[n].abs.인정, t = Math.min(v, (B.trip || {})[n] || 0);
+    return `<div class="row"><span><b>${n}번</b> <span class="rh" style="display:inline">인정결석 ${v}일 · 생결 ${v - t}일</span></span><span class="tripc"><button class="round sm" data-act="trip" data-no="${n}" data-d="-1" ${t ? "" : "disabled"}>−</button><b>현체 ${t}</b><button class="round sm" data-act="trip" data-no="${n}" data-d="1" ${t < v ? "" : "disabled"}>+</button></span></div>`; }).join("")}</div>`;
 }
 let ttCands = [];
 function applyTT(blocks, pick){
@@ -2709,7 +3076,7 @@ function openWelcome(){
     <div class="feat"><span class="ico" style="background:var(--red)">${ICON.cal}</span><div><b>학사일정 · D-day</b><span>학교만 고르면 나이스에서 학사일정과 급식을 매일 가져와요.</span></div></div>
     <button class="pill" data-act="startWizard">시작하기 · 학교 고르고 시간표만 넣으면 돼요</button>
     <button class="ghost" data-act="skipWelcome" style="margin-top:.6rem">나중에 할게요</button>
-    <div class="note">파일 첨부와 클릭만으로 쓸 수 있어요. 글자를 직접 입력하고 싶을 때만<br>Lively 설정에서 <b>키보드 입력</b>을 켜 주세요 (⚙ 설정 → 사용 방법).</div>
+    <div class="note">파일 첨부와 클릭만으로 쓸 수 있어요. 글자 칸을 누르면<br>작은 <b>입력 창</b>이 떠요. 거기에 쓰고 확인을 누르면 돼요.</div>
   </div>`;
   $("#welcome").classList.add("open");
 }
@@ -2746,7 +3113,7 @@ function paneProg(){
         <div data-plans>${S.plans.filter(x => x.subj === sub).sort((a, b) => a.date.localeCompare(b.date)).map(planRow).join("")}</div>
         <div class="presets" style="margin:0">${S.events.filter(e => e.type === "시험" && e.start >= ymd(now())).sort((a, b) => a.start.localeCompare(b.start)).slice(0, 4).map(e => `<button class="pill sm gray" data-act="addPlan" data-date="${e.start}" data-title="${esc(e.title)}">+ ${mdw(e.start)} ${esc(e.title)}</button>`).join("")}<button class="pill sm gray" data-act="addPlan">+ 직접 추가</button></div></div>
       <div class="row col"><span class="rl">차시 목록 <span class="rh">선택 사항 · 한 줄에 한 차시씩 붙여넣으면 “다음 수업 내용”이 보여요.</span></span>
-        <textarea class="inp" data-f="lessons" placeholder="한 줄에 단원 하나 (1시간)&#10;2시간 쓰는 단원은 끝에 ×2&#10;시험 경계는 ── 시험 ── 줄">${esc(S.units[sub] ? unitsText(S.units[sub]) : (S.lessons[sub] || []).join("\n"))}</textarea></div>
+        <textarea class="inp" data-f="lessons" placeholder="한 줄에 단원 하나 (1시간)&#10;2시간 쓰는 단원은 끝에 ×2&#10;시험 경계는 ── 시험 ── 줄&#10;전범위 시험은 ── 시험 전범위 ── 줄">${esc(S.units[sub] ? unitsText(S.units[sub]) : (S.lessons[sub] || []).join("\n"))}</textarea></div>
     </div></div>`;
   }).join("");
 }
@@ -2793,6 +3160,9 @@ function openSettings(tab, wiz){
         <div class="row col"><textarea class="inp" id="sRoster" placeholder="1 김OO&#10;2 이OO&#10;(비워 두면 번호만 보여요)">${esc(rosterTxt)}</textarea></div>
         <div class="row"><label>이름 가리기<span class="rh">김○○처럼 성만 보여 줘요</span></label>${sw("sMask", s.maskNames)}</div>
       </div>
+      <div class="gl">지난 출결 (나이스)</div>
+      <label class="drop sm" data-drop="attx"><span class="ico" style="background:var(--green)">${ICON.people}</span><div><b>나이스 출결 엑셀 넣기</b><span class="h">① 학급별 출결현황 → ② 교외체험학습현황 목록(현체 일수) 순서로 넣어요 · 누적 출결의 '학년도'에 합쳐져요</span></div><input type="file" accept=".xlsx"></label>
+      <div id="attxOut">${attBaseMsg()}</div>
       <p class="gfoot">기록은 이 컴퓨터 안에만 저장되고 어디로도 전송되지 않아요.</p>`,
     tt: `<h1>시간표</h1><p class="lead">내 시간표 파일을 첨부하면 아래 표가 자동으로 채워져요.</p>
       <label class="drop" data-drop="tt"><span class="ico" style="background:var(--orange)">${ICON.clock}</span><div><b>시간표 파일 첨부</b><span class="h">한글(HWP·HWPX) · PDF · 엑셀(xlsx) · 이 상자로 끌어다 놓아도 돼요</span></div><input type="file" accept=".hwp,.hwpx,.pdf,.xlsx,.csv,.txt,.htm,.html"></label>
@@ -2860,7 +3230,7 @@ function openSettings(tab, wiz){
         <li>⚙ 설정 → <b>시간표</b>에서 내 시간표 파일(한글·엑셀)을 첨부해요.</li>
         <li>⚙ 설정 → <b>학사일정</b>에서 학교 학사일정 파일을 첨부해요. 바로 달력에 들어가요.</li>
         <li>파일이 안 읽히면 한글에서 표를 복사해 ‘붙여넣기’ 칸에 붙여넣어요.</li>
-        <li>이름·담임 학급처럼 <b>글자를 직접 입력</b>할 때만 Lively <span class="k">설정(Settings)</span> → <span class="k">배경화면(Wallpaper)</span> → <span class="k">입력(Wallpaper Input)</span>에서 키보드를 켜고, 끝나면 다시 꺼요 (켜 두면 바탕화면 아이콘이 숨겨져요).</li></ol></div></div>
+        <li>이름·담임 학급처럼 <b>글자를 넣는 칸</b>을 누르면 작은 입력 창이 떠요. 거기에 쓰고 <span class="k">확인</span>을 누르면 들어가요 (Lively 키보드 설정은 켜지 않아도 돼요).</li></ol></div></div>
       <div class="gl">3. 매일 쓰기 (마우스만으로)</div><div class="grp help"><div class="row col"><ol>
         <li><b>출결</b>: 학생 번호를 누르고 결석·지각·조퇴·결과와 사유를 골라요.</li>
         <li><b>진도</b>: 수업이 끝나면 오늘 수업의 <b>진도 +1</b>을 눌러요.</li>
@@ -3023,6 +3393,7 @@ function toast(msg){ const t = $("#toast"); t.textContent = msg; t.classList.add
 /* ---------- 이벤트 ---------- */
 let resetArmed = false;
 document.addEventListener("pointerdown", unlockAudio, { once:true });
+document.addEventListener("input", e => { if (e.target.id === "smsTa") { smsEdit = { base:smsBase, text:e.target.value }; smsFit(); } });   // 고쳐 쓴 보호자 문자는 다시 그려도 유지
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-act]");
   if (!b) {
@@ -3040,11 +3411,24 @@ document.addEventListener("click", e => {
     case "tlPrev": case "tlNext": { const dir = a === "tlPrev" ? -1 : 1, t0 = now(); do { tlOff += dir; } while ([0,6].includes(viewDay(t0).getDay()) && Math.abs(tlOff) < 400); closePop(); renderStatus(t0); return; }
     case "tlToday": tlOff = 0; closePop(); renderStatus(now()); return;
     case "attType": attRec(true).type = b.dataset.v; break;
-    case "attSet": { const r = attRec(true); if (r.type !== b.dataset.t) delete r.p; r.type = b.dataset.t; r.reason = b.dataset.r; break; }   // 교시(조회·종례 포함)를 고르게 창을 열어 둔다
+    case "attSet": { const r = attRec(true); if (r.type !== b.dataset.t || b.dataset.t === "결석") delete r.p; r.type = b.dataset.t; r.reason = b.dataset.r; if (r.type !== "결석" || r.reason !== "출석인정") delete r.sub; else r.sub = r.sub || "생결"; smsX = null; break; }   // 교시(조회·종례 포함)를 고르게 창을 열어 둔다
     case "attPer": { const r = attRec(false); if (!r) return; const n = +b.dataset.n;
       if (MULTI(r.type)) { const a = [].concat(r.p ?? []); r.p = a.includes(n) ? a.filter(x => x !== n) : [...a, n].sort((x, y) => x - y); }
       else r.p = r.p === n ? null : n;
-      if (r.p == null || (Array.isArray(r.p) && !r.p.length)) delete r.p; break; }
+      if (r.p == null || (Array.isArray(r.p) && !r.p.length)) delete r.p; smsX = null; break; }
+    case "smsX": smsX = smsX === b.dataset.v ? null : b.dataset.v; renderPop(); return;
+    case "smsArr": smsArr = smsArr === +b.dataset.n ? 0 : +b.dataset.n; renderPop(); return;
+    case "smsCopy": { const ta = $("#smsTa"); if (!ta) return;
+      const done = ok => toast(ok ? "복사했어요 · e알리미에서 학생을 고르고 Ctrl+V로 붙여넣으세요" : "복사하지 못했어요 · 문구를 직접 골라 복사해 주세요");
+      const web = () => { copyText(ta.value).then(done); try { window.open(EALIMI_URL, "ealimi"); } catch(err) {} };
+      // 바탕화면(Lively)은 클립보드에 못 쓰고 window.open은 엣지로 열린다 → 마감요정이 켜져 있으면 복사와 크롬 열기를 맡긴다
+      if (typeof mgLive !== "undefined" && mgLive) fetch(`${BRIDGE}/ealimi`, { method:"POST", body:ta.value }).then(r => { if (!r.ok) throw 0; done(true); }).catch(web); else web();
+      return; }
+    case "attBaseDel": delete S.attBase; save(); renderAll(); { const o = $("#attxOut"); if (o) o.innerHTML = ""; } return;
+    case "trip": { const B = S.attBase; if (!B) return; const n = +b.dataset.no, v = ((B.rows[n] || {}).abs || {}).인정 || 0; B.trip = B.trip || {};
+      const t = Math.max(0, Math.min(v, (B.trip[n] || 0) + +b.dataset.d)); if (t) B.trip[n] = t; else delete B.trip[n];
+      save(); renderAll(); const o = $("#attxOut"); if (o) o.innerHTML = attBaseMsg(); return; }
+    case "attSub": { const r = attRec(false); if (!r) return; r.sub = b.dataset.v; break; }
     case "attReason": { const r = attRec(false); if (r) r.reason = b.dataset.v; break; }
     case "attDoc": { const r = attRec(false); if (r) r.doc = !r.doc; break; }
     case "attGone": {
@@ -3119,6 +3503,7 @@ document.addEventListener("click", e => {
     case "memoDone": { const k = `${popPer.dk}|${popPer.p}`; if (S.memoDone[k]) delete S.memoDone[k]; else S.memoDone[k] = true; save(); renderAll(); renderPop(); return; }
     case "taskAll": openTask(b); return;
     case "calAll": openCal(b); return;
+    case "attSumAll": openSum(b); return;
     case "attView": attView = b.dataset.v; renderAtt(now()); return;
     case "attDay": { const d = +b.dataset.d; closePop();
       if (!d) attOff = 0; else do { attOff = Math.min(0, attOff + d); } while (attOff && [0,6].includes(parseYmd(attYmd()).getDay()));
@@ -3153,6 +3538,12 @@ document.addEventListener("submit", e => {
   const f = e.target, kind = f.dataset.form; if (!kind) return;
   e.preventDefault();
   if (kind === "ovr") { const v = f.v.value.trim(); if (v) setOvr(v); }
+  else if (kind === "ev") {
+    const t = f.t.value.trim(); if (!t || !f.d.value) { toast("날짜와 일정 이름을 넣어 주세요"); return; }
+    const ev = parseEventLine(`${f.d.value}${f.e.value && f.e.value > f.d.value ? "~" + f.e.value : ""} ${t.replace(/#/g, "")}${f.dd.checked ? " !" : ""}`);
+    if (!ev) { toast("날짜를 읽지 못했어요"); return; }
+    S.events.push(ev); save(); renderAll(); renderPop(); toast(`${md(ev.start)} ${ev.title} 일정을 넣었어요`);
+  }
   else if (kind === "memo") { setMemo(f.v.value); renderPop(); toast("메모를 저장했어요"); }
   else if (kind === "school") { const q = f.q.value.trim(); if (q.length >= 2) searchSchool(q); else toast("학교 이름을 두 글자 이상 적어 주세요"); }
   else if (kind === "nitem") { const t = f.t.value.trim(); if (!t) return; S.notice.items.push({ id:uid(), text:t, until:f.u.value || "" }); save(); openNotice(); }
