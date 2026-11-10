@@ -1,60 +1,91 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0}</style>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>교사 대시보드 설치 안내</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&display=swap">
 <style>
-/* 레이아웃: 위에서 아래로 한 줄씩 — 큰 그림 + 한두 줄 설명. 알림장 같은 종이 위에 형광펜 */
+/* 큰 그림 하나 + 한두 줄. 위에서 아래로 한 장씩 넘기는 그림책처럼 */
 :root{
   --bg:#eef3f8; --paper:#ffffff; --ink:#1d2a3a; --soft:#5d6b7c; --line:#d5dfea;
   --blue:#2f6fde; --blueSoft:#dce8fb; --mark:#ffe066; --red:#e5484d; --green:#2fa86b;
   --win:#f6f9fc; --display:"Jua","Noto Sans KR",system-ui,sans-serif; --body:"Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme: dark){:root{
   --bg:#121821; --paper:#1b2430; --ink:#e8eef6; --soft:#9fb0c3; --line:#2c3a4b;
   --blue:#6aa1ff; --blueSoft:#21324d; --mark:#8a7414; --red:#ff6b70; --green:#4cc98a; --win:#222d3b; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#121821; --paper:#1b2430; --ink:#e8eef6; --soft:#9fb0c3; --line:#2c3a4b;
-  --blue:#6aa1ff; --blueSoft:#21324d; --mark:#8a7414; --red:#ff6b70; --green:#4cc98a; --win:#222d3b; color-scheme:dark}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
-.wrap{max-width:46rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:2.5rem 4rem;display:flex;flex-direction:column;gap:1.4rem}
-h1{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6vw,2.8rem);line-height:1.2;margin:0;text-wrap:balance}
-.lead{margin:.3rem 0 0;color:var(--soft);font-size:1.05rem}
-.time{display:inline-block;margin-top:.8rem;background:var(--blueSoft);color:var(--blue);font-weight:700;font-size:.9rem;padding:.25rem .8rem;border-radius:99px}
-.step{background:var(--paper);border-radius:22px;padding:1.4rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.4rem;align-items:center;border:1px solid var(--line)}
-.step.must{border:2px solid var(--red)}
-.pic{background:var(--win);border-radius:16px;aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;overflow:hidden}
-.pic svg{width:100%;height:100%}
-.n{font-family:var(--display);font-size:1rem;color:var(--blue)}
-.must .n{color:var(--red)}
-h2{font-family:var(--display);font-weight:400;font-size:1.65rem;line-height:1.25;margin:.1rem 0 .5rem;text-wrap:balance}
-.txt p{margin:0 0 .4rem}
-.txt small{color:var(--soft);font-size:.9rem;display:block}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.65}
+.wrap{max-width:38rem;margin:0 auto;padding:2.5rem 16px 4rem;display:flex;flex-direction:column;gap:1.2rem}
+header{text-align:center}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(2.1rem,7vw,3rem);line-height:1.2;margin:0;text-wrap:balance}
+.lead{margin:.5rem 0 0;color:var(--soft);font-size:1.1rem}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:1.4rem;text-align:center}
+.card.must{border:2px solid var(--red)}
+.n{display:inline-grid;place-items:center;width:3rem;height:3rem;border-radius:50%;background:var(--blue);color:#fff;font-family:var(--display);font-size:1.6rem}
+.must .n{background:var(--red)}
+.tag{display:block;font-family:var(--display);color:var(--red);margin-top:.3rem}
+h2{font-family:var(--display);font-weight:400;font-size:1.8rem;line-height:1.25;margin:.5rem 0 .2rem;text-wrap:balance}
+.pic{background:var(--win);border-radius:18px;aspect-ratio:4/3;max-width:26rem;margin:.9rem auto;overflow:hidden}
+.pic svg{width:100%;height:100%;display:block}
+.card p{margin:.3rem 0;font-size:1.1rem}
+.card small{display:block;color:var(--soft);font-size:.95rem;margin-top:.5rem}
 mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;padding:0 .1rem}
-.k{display:inline-block;border:1px solid var(--line);background:var(--win);border-radius:7px;padding:0 .4rem;font-size:.92em;font-weight:500;white-space:nowrap}
-.tips{background:var(--paper);border-radius:22px;padding:1.3rem 1.4rem;border:1px solid var(--line)}
-.tips h2{font-size:1.35rem}
-.tips ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.45rem}
-@media (max-width:640px){.step{grid-template-columns:1fr}}
+.k{display:inline-block;border:1px solid var(--line);background:var(--win);border-radius:7px;padding:0 .45rem;font-size:.92em;font-weight:500;white-space:nowrap}
+.down{display:block;text-align:center}
+.arrow{font-size:1.5rem;color:var(--soft);text-align:center;line-height:1}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-family:var(--display);font-size:1.25rem;padding:.65rem 1.6rem;border-radius:99px;margin-top:.6rem}
+.btn.ghost{background:transparent;color:var(--blue);border:2px solid var(--blue);font-size:1rem;padding:.4rem 1.1rem}
+.why{background:var(--blueSoft);border-radius:14px;padding:.7rem 1rem;margin-top:.8rem;font-size:1rem;text-align:left}
+.why b{color:var(--blue)}
+h3{font-family:var(--display);font-weight:400;font-size:1.5rem;text-align:center;margin:1.6rem 0 .2rem}
+.tips{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.tip{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1rem;text-align:center;font-size:1rem}
+.tip .e{font-size:2.4rem;line-height:1.2;display:block}
+details{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:.9rem 1.1rem}
+summary{cursor:pointer;font-weight:700}
+details p{margin:.6rem 0 0;color:var(--soft)}
+.foot{text-align:center;color:var(--soft);font-size:.95rem;margin-top:1rem}
+.foot a{color:var(--blue)}
+@media (max-width:480px){.tips{grid-template-columns:1fr}}
 /* svg 색 */
 .s-win{fill:var(--paper);stroke:var(--line);stroke-width:3}
 .s-bar{fill:var(--line)}
-.s-ink{fill:var(--ink)} .s-soft{fill:var(--soft)} .s-blue{fill:var(--blue)} .s-bs{fill:var(--blueSoft)} .s-red{fill:var(--red)} .s-mark{fill:var(--mark)} .s-green{fill:var(--green)} .s-bg{fill:var(--win)}
+.s-ink{fill:var(--ink)} .s-soft{fill:var(--soft)} .s-blue{fill:var(--blue)} .s-bs{fill:var(--blueSoft)} .s-mark{fill:var(--mark)} .s-green{fill:var(--green)} .s-bg{fill:var(--win)}
 .s-line{fill:none;stroke:var(--soft);stroke-width:4;stroke-linecap:round;stroke-dasharray:10 9}
 .s-txt{font-family:var(--body);font-weight:700;fill:var(--ink)}
 .s-txt.w{fill:#fff}
-</style>
-
+</style></head>
+<body>
 <div class="wrap">
   <header>
-    <h1>교사 대시보드<br>바탕화면에 띄우기</h1>
-    <p class="lead">무료 프로그램 하나 깔고, 파일 하나 끌어다 놓으면 끝이에요.</p>
-    <span class="time">10분이면 돼요</span>
+    <h1>교사 대시보드<br>바탕화면에 붙이기</h1>
+    <p class="lead">교실 벽 시간표를 내 컴퓨터 바탕화면에 붙인다고 생각하면 돼요.<br>따라 하면 10분이면 끝나요.</p>
   </header>
 
+  <!-- 준비물 -->
+  <section class="card">
+    <h2>준비물은 딱 두 개</h2>
+    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="액자 역할을 하는 Lively 프로그램과, 액자에 넣을 그림인 대시보드 묶음 파일">
+      <rect class="s-win" x="36" y="60" width="150" height="150" rx="18"/>
+      <rect class="s-bs" x="56" y="80" width="110" height="110" rx="10"/>
+      <circle class="s-blue" cx="111" cy="135" r="26"/><path d="M99 135l9 9 17-19" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <text class="s-txt" x="111" y="244" font-size="20" text-anchor="middle">① 액자</text>
+      <text class="s-txt" x="111" y="270" font-size="15" text-anchor="middle" fill="var(--soft)">Lively (무료)</text>
+      <text class="s-txt" x="200" y="145" font-size="34" text-anchor="middle" fill="var(--soft)">+</text>
+      <rect class="s-win" x="232" y="66" width="116" height="140" rx="12"/>
+      <path class="s-mark" d="M276 66h28v140h-28z" opacity=".8"/>
+      <text class="s-txt" x="290" y="146" font-size="22" text-anchor="middle">ZIP</text>
+      <text class="s-txt" x="290" y="244" font-size="20" text-anchor="middle">② 그림</text>
+      <text class="s-txt" x="290" y="270" font-size="15" text-anchor="middle" fill="var(--soft)">대시보드 묶음</text>
+    </svg></div>
+    <p><b>Lively</b>는 바탕화면에 그림을 걸어 주는 <mark>액자</mark>,<br><b>대시보드 묶음</b>은 그 액자에 넣을 <mark>그림</mark>이에요.</p>
+  </section>
+  <div class="arrow">⬇</div>
+
   <!-- 1 -->
-  <section class="step">
+  <section class="card">
+    <span class="n">1</span>
+    <h2>액자(Lively)부터 깔아요</h2>
     <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Microsoft Store에서 Lively Wallpaper를 검색하고 받기를 누르는 그림">
       <rect class="s-win" x="30" y="30" width="340" height="240" rx="16"/>
       <rect class="s-bar" x="30" y="30" width="340" height="34" rx="16"/><rect class="s-bar" x="30" y="48" width="340" height="16"/>
@@ -68,16 +99,33 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
       <text class="s-txt w" x="220" y="226" font-size="17" text-anchor="middle">받기</text>
       <path class="s-ink" d="M256 222l0 34 9-9 7 15 7-3-7-15 13 0z"/>
     </svg></div>
-    <div class="txt">
-      <div class="n">1단계</div>
-      <h2>Lively 깔기</h2>
-      <p><b>Microsoft Store</b>에서 <mark>Lively Wallpaper</mark>를 찾아 <span class="k">받기</span>.</p>
-      <small>무료예요. 시작 메뉴에서 “Microsoft Store”를 열면 돼요.</small>
-    </div>
+    <p>시작 메뉴에서 <b>Microsoft Store</b>를 열고<br><mark>Lively Wallpaper</mark>를 찾아 <span class="k">받기</span>를 눌러요.</p>
+    <small>무료예요. 회원 가입도 필요 없어요.</small>
   </section>
+  <div class="arrow">⬇</div>
 
   <!-- 2 -->
-  <section class="step">
+  <section class="card">
+    <span class="n">2</span>
+    <h2>그림(대시보드 묶음)을 받아요</h2>
+    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="묶음 파일을 받고, 압축은 풀지 않는다는 그림">
+      <rect class="s-win" x="140" y="40" width="120" height="150" rx="12"/>
+      <path class="s-mark" d="M186 40h28v150h-28z" opacity=".8"/>
+      <text class="s-txt" x="200" y="124" font-size="24" text-anchor="middle">ZIP</text>
+      <text class="s-txt" x="200" y="222" font-size="16" text-anchor="middle">teacher-desk-lively.zip</text>
+      <rect x="92" y="240" width="216" height="40" rx="20" fill="none" stroke="var(--red)" stroke-width="3"/>
+      <text class="s-txt" x="200" y="266" font-size="17" text-anchor="middle" fill="var(--red)">✋ 압축 풀지 마세요</text>
+    </svg></div>
+    <p>아래 버튼을 누르면 <b>다운로드 폴더</b>에 받아져요.<br><mark>받은 그대로</mark> 두면 돼요.</p>
+    <a class="btn" href="teacher-desk-lively.zip" download>⬇ 대시보드 묶음 받기</a>
+    <small>마감요정을 같이 쓰는 분은 <a href="teacher-desk-magam-lively.zip" download>연동판 묶음</a>을 받으세요. 둘 중 하나만 있으면 돼요.</small>
+  </section>
+  <div class="arrow">⬇</div>
+
+  <!-- 3 -->
+  <section class="card">
+    <span class="n">3</span>
+    <h2>액자에 그림을 넣어요</h2>
     <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="받은 묶음 파일을 Lively 창으로 끌어다 놓는 그림">
       <rect class="s-win" x="150" y="40" width="230" height="220" rx="16"/>
       <rect class="s-bar" x="150" y="40" width="230" height="32" rx="16"/><rect class="s-bar" x="150" y="56" width="230" height="16"/>
@@ -89,34 +137,35 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
       <text class="s-txt" x="72" y="168" font-size="16" text-anchor="middle" fill="var(--blue)">ZIP</text>
       <path class="s-ink" d="M96 186l0 36 9-9 7 15 7-3-7-15 13 0z"/>
     </svg></div>
-    <div class="txt">
-      <div class="n">2단계</div>
-      <h2>Lively에 끌어다 놓기</h2>
-      <p>받은 <b>teacher-desk-lively.zip</b>을 <mark>압축 풀지 말고</mark> Lively 창 안으로 끌어다 놓아요.</p>
-      <small>목록에 생긴 “교사 대시보드”를 누르면 바탕화면이 돼요. 안 되면 압축을 풀어서 안에 있는 teacher-desk.html을 끌어다 놓아도 돼요.</small>
-    </div>
+    <p>Lively를 열고, 받은 파일을 마우스로 <mark>꾹 잡아서 Lively 창 안에 놓아요</mark>.</p>
+    <p>목록에 <b>“교사 대시보드”</b>가 생기면, 그걸 한 번 눌러요.<br>바탕화면이 대시보드로 바뀌어요.</p>
+    <small>끌어다 놓기가 안 되면: 파일을 오른쪽 클릭 → 압축 풀기 → 안에 있는 teacher-desk.html을 끌어다 놓아도 돼요.</small>
   </section>
+  <div class="arrow">⬇</div>
 
-  <!-- 3 -->
-  <section class="step must">
-    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Lively 설정에서 디스크 캐시를 켜는 그림">
+  <!-- 4 -->
+  <section class="card must">
+    <span class="n">4</span><span class="tag">이건 꼭 하세요</span>
+    <h2>기억 스위치를 켜요</h2>
+    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="Lively 설정에서 디스크 캐시 스위치를 켜는 그림">
       <rect class="s-win" x="40" y="34" width="320" height="232" rx="16"/>
       <text class="s-txt" x="64" y="72" font-size="18">⚙ 설정</text>
       <rect class="s-bs" x="58" y="118" width="284" height="66" rx="14"/>
       <text class="s-txt" x="78" y="157" font-size="19">디스크 캐시</text>
       <rect class="s-green" x="266" y="134" width="58" height="32" rx="16"/><circle cx="308" cy="150" r="12" fill="#fff"/>
       <rect x="58" y="118" width="284" height="66" rx="14" fill="none" stroke="var(--red)" stroke-width="3"/>
+      <text class="s-txt" x="200" y="226" font-size="16" text-anchor="middle" fill="var(--green)">켜짐 = 기억해요</text>
     </svg></div>
-    <div class="txt">
-      <div class="n">3단계 · 꼭 하세요</div>
-      <h2>디스크 캐시 켜기</h2>
-      <p>Lively 창의 <span class="k">⚙ 설정</span>에서 <mark>디스크 캐시</mark>를 켜요.</p>
-      <small>안 켜면 컴퓨터를 껐다 켤 때 넣은 내용이 사라져요. 바꾼 뒤엔 Lively를 한 번 껐다 켜요(작업 표시줄 오른쪽 Lively 아이콘 오른쪽 클릭 → 종료 → 다시 실행).</small>
-    </div>
+    <p>Lively 창의 <span class="k">⚙ 설정</span>에서 <mark>디스크 캐시</mark>를 켜요.<br>그다음 Lively를 한 번 <b>껐다 켜요</b>.</p>
+    <div class="why"><b>왜 켜요?</b> 이 스위치가 꺼져 있으면 컴퓨터를 끌 때마다 넣어 둔 시간표·출결을 다 잊어버려요. 켜 두면 계속 기억해요.</div>
+    <small>Lively 끄는 법: 화면 맨 아래 오른쪽(시계 옆)의 Lively 아이콘을 오른쪽 클릭 → 종료. 그리고 다시 실행해요.</small>
   </section>
+  <div class="arrow">⬇</div>
 
-  <!-- 4 -->
-  <section class="step">
+  <!-- 5 -->
+  <section class="card">
+    <span class="n">5</span>
+    <h2>우리 학교와 시간표를 알려 줘요</h2>
     <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="대시보드 시작하기 화면에서 학교를 고르고 시간표 파일을 넣는 그림">
       <rect class="s-win" x="40" y="34" width="320" height="232" rx="16"/>
       <text class="s-txt" x="200" y="78" font-size="20" text-anchor="middle">시작하기</text>
@@ -127,45 +176,36 @@ mark{background:linear-gradient(transparent 55%,var(--mark) 55%);color:inherit;p
       <rect class="s-blue" x="120" y="216" width="160" height="34" rx="17"/>
       <text class="s-txt w" x="200" y="239" font-size="16" text-anchor="middle">다 됐어요</text>
     </svg></div>
-    <div class="txt">
-      <div class="n">4단계</div>
-      <h2>학교 고르고 시간표 넣기</h2>
-      <p>바탕화면에 뜬 <span class="k">시작하기</span>를 누르고 따라가요.</p>
-      <small>학교를 고르면 학사일정·급식은 나이스에서 매일 자동으로 와요. 시간표는 한글·PDF·엑셀 파일 그대로 넣으면 돼요.</small>
-    </div>
+    <p>바탕화면에 뜬 <span class="k">시작하기</span>를 누르고<br>화면이 묻는 대로 따라가요.</p>
+    <small>학교를 고르면 학사일정과 급식은 매일 저절로 와요. 시간표는 갖고 있는 한글·PDF·엑셀 파일을 그대로 넣으면 돼요.</small>
+    <div class="why"><b>주의!</b> 꼭 <b>바탕화면에 뜬 대시보드</b>에서 넣어요. 파일을 더블클릭해 인터넷 창(크롬·엣지)으로 열어서 넣으면 바탕화면에는 안 보여요.</div>
+  </section>
+  <div class="arrow">⬇</div>
+
+  <!-- 끝 -->
+  <section class="card">
+    <h2>🎉 끝났어요!</h2>
+    <p>이제 바탕화면에서 <b>지금 몇 교시인지</b>, 진도, 출결, 할 일을 볼 수 있어요.</p>
   </section>
 
-  <!-- 5 -->
-  <section class="step">
-    <div class="pic"><svg viewBox="0 0 400 300" role="img" aria-label="바탕화면 아이콘이 왼쪽에 있고 대시보드가 오른쪽으로 비켜난 그림">
-      <rect class="s-win" x="30" y="40" width="340" height="200" rx="12"/>
-      <g class="s-blue" opacity=".75"><rect x="48" y="60" width="36" height="30" rx="6"/><rect x="48" y="104" width="36" height="30" rx="6"/><rect x="48" y="148" width="36" height="30" rx="6"/><rect x="48" y="192" width="36" height="30" rx="6"/></g>
-      <rect class="s-bs" x="128" y="58" width="224" height="164" rx="10"/>
-      <rect class="s-paper s-win" x="142" y="72" width="94" height="60" rx="8"/><rect class="s-win" x="244" y="72" width="94" height="60" rx="8"/>
-      <rect class="s-win" x="142" y="142" width="196" height="66" rx="8"/>
-      <path d="M96 252h26" stroke="var(--red)" stroke-width="4" stroke-linecap="round"/><path d="M112 244l12 8-12 8" fill="none" stroke="var(--red)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      <text class="s-txt" x="96" y="282" font-size="15" fill="var(--red)">왼쪽 여백</text>
-      <rect x="140" y="250" width="120" height="30" rx="8" fill="var(--ink)"/><rect x="186" y="240" width="28" height="12" fill="var(--ink)"/>
-    </svg></div>
-    <div class="txt">
-      <div class="n">5단계 · 원하면</div>
-      <h2>내 화면에 맞추기</h2>
-      <p>대시보드 오른쪽 위 <span class="k">⚙</span> → 화면 · 알림에서 바꿔요.</p>
-      <p>· 아이콘이 가리면 <mark>왼쪽 여백</mark>을 늘려요.<br>· <mark>칸 배치</mark>에서 칸 순서를 바꾸거나 안 쓰는 칸을 숨겨요.</p>
-      <small>모니터가 두 개면 Lively 설정의 <b>배경 화면 배치 방식</b>에서 “복제”를 고르면 두 화면에 다 떠요.</small>
-    </div>
-  </section>
+  <h3>쓰면서 알아 두면 좋은 네 가지</h3>
+  <div class="tips">
+    <div class="tip"><span class="e">👆</span><b>칸을 누르면 크게 보여요</b><br>칸에는 꼭 필요한 것만 있어요.</div>
+    <div class="tip"><span class="e">⌨️</span><b>글자 칸을 누르면 입력 창이 떠요</b><br>거기에 쓰고 <span class="k">확인</span>.</div>
+    <div class="tip"><span class="e">🖐️</span><b>마우스 휠은 안 돼요</b><br>목록은 휴대폰처럼 잡고 끌어요.</div>
+    <div class="tip"><span class="e">💾</span><b>가끔 백업해요</b><br><span class="k">⚙</span> → 백업 · 초기화 → 파일로 내보내기.</div>
+  </div>
 
-  <section class="tips">
-    <h2>쓰면서 알아 두세요</h2>
-    <ul>
-      <li>마우스 <b>휠은 안 먹어요</b>. 큰 창에서 목록을 내릴 땐 <b>잡고 끌어요</b>(휴대폰처럼).</li>
-      <li><b>글자 칸을 누르면</b> 작은 입력 창이 떠요. 거기에 쓰고 <span class="k">확인</span>을 누르면 들어가요.</li>
-      <li>칸에는 꼭 필요한 것만 보여요. <b>제목이나 칸을 누르면</b> 큰 창으로 자세히 나와요.</li>
-      <li>혹시 모르니 가끔 <span class="k">⚙</span> → 백업 · 초기화에서 <b>파일로 내보내기</b>를 해 두세요.</li>
-      <li>더 자세한 방법은 대시보드 <span class="k">⚙</span> → <b>사용 방법</b>에 있어요.</li>
-    </ul>
-  </section>
+  <h3>막혔을 때</h3>
+  <details><summary>바탕화면 아이콘이 대시보드에 가려요</summary>
+    <p>대시보드 오른쪽 위 ⚙ → 화면 · 알림에서 <b>왼쪽 여백</b>을 늘려요. 같은 곳의 <b>칸 배치</b>에서 칸 순서를 바꾸거나 안 쓰는 칸을 숨길 수도 있어요.</p></details>
+  <details><summary>컴퓨터를 켤 때마다 처음 화면으로 돌아가요</summary>
+    <p>4번의 기억 스위치(디스크 캐시)가 꺼져 있어서예요. 다시 켜고 Lively를 껐다 켜요. 그래도 안 되면 <a href="대시보드_점검.bat" download>점검 도구</a>와 <a href="td-check.ps1" download>td-check.ps1</a>을 같은 폴더에 받아 점검 도구를 더블클릭해요. 원인을 찾아 줘요.</p></details>
+  <details><summary>시계가 멈춰 있어요</summary>
+    <p>컴퓨터가 바쁘면 가끔 멈춰요. Lively를 껐다 켜면 돌아와요(시계 옆 Lively 아이콘 오른쪽 클릭 → 종료 → 다시 실행).</p></details>
+  <details><summary>모니터가 두 개예요</summary>
+    <p>Lively 설정의 <b>배경 화면 배치 방식</b>에서 “복제”를 고르면 두 화면에 다 떠요.</p></details>
+
+  <p class="foot">넣은 내용은 내 컴퓨터에만 저장돼요. 어디로도 보내지 않아요.<br>더 자세한 방법은 대시보드 ⚙ → <b>사용 방법</b>에 있어요.</p>
 </div>
-
-</html>
+</body></html>
